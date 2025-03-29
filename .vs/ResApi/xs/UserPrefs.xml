@@ -1,0 +1,53 @@
+﻿<Properties StartupConfiguration="{CF3C8B4C-7B71-4D41-B0E7-62F7D323FCEF}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ResApi/DTA/Services/PropertyService.cs">
+    <Files>
+      <File FileName="ResApi/Startup.cs" Line="38" Column="1" />
+      <File FileName="ResApi/DataResponse/DataContext.cs" Line="67" Column="12" />
+      <File FileName="ResApi/Models/Employee.cs" Line="10" Column="1" />
+      <File FileName="ResApi/DTA/Services/AuthService.cs" Line="30" Column="25" />
+      <File FileName="ResApi/DTA/Services/EmployeeService.cs" Line="127" Column="19" />
+      <File FileName="ResApi/DTA/Services/PropertyService.cs" Line="34" Column="46" />
+      <File FileName="ResApi/Models/Property.cs" Line="20" Column="21" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ResApi" expanded="True">
+            <Node name="ResApi" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="DataResponse" expanded="True" />
+              <Node name="DTA" expanded="True">
+                <Node name="Intefaces" expanded="True">
+                  <Node name="Shared" expanded="True" />
+                </Node>
+                <Node name="Services" expanded="True">
+                  <Node name="PropertyService.cs" selected="True" />
+                </Node>
+              </Node>
+              <Node name="DTO" expanded="True">
+                <Node name="CategoryMenu" expanded="True" />
+                <Node name="Employee" expanded="True" />
+                <Node name="Property" expanded="True" />
+                <Node name="Role" expanded="True" />
+                <Node name="Tables" expanded="True" />
+              </Node>
+              <Node name="Extentions" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Shared" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ResApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/leoramadani/Documents/reealestApi/ResApi/DTA/Services/PropertyService.cs" relfile="ResApi/DTA/Services/PropertyService.cs" line="51" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
