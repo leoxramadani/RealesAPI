@@ -6,8 +6,8 @@ using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using ResApi.DTA.Intefaces;
-using ResApi.DTO.LoginDTO;
+using RealesApi.DTA.Intefaces;
+using RealesApi.DTO.LoginDTO;
 
 namespace ResApi.Controllers
 {

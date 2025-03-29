@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ResApi.DTO.LoginDTO
+namespace RealesApi.DTO.LoginDTO
 {
 	public class UserDTO
 	{

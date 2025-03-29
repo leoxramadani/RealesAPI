@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ResApi.Models.Shared;
-using ResApi.Models;
+using RealesApi.Models.Shared;
+using RealesApi.Models;
 using System.Threading.Tasks;
-using ResApi.DTA.Intefaces.Shared;
+using RealesApi.DTA.Intefaces.Shared;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System;
 
-namespace ResApi.DTA.Services.Shared
+namespace RealesApi.DTA.Services.Shared
 {
     public class BaseService<T> : IBaseService<T> where T : BaseEntity
     {

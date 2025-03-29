@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ResApi.DTA.Intefaces
+namespace RealesApi.DTA.Intefaces
 {
 	public interface IUnitOfWork
 	{

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using ResApi.Models.Shared;
+using RealesApi.Models.Shared;
 
 #nullable disable
 
-namespace ResApi.Models
+namespace RealesApi.Models
 {
     public partial class PropertyOtherImage : BaseEntity
     {

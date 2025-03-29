@@ -3,10 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ResApi.DataResponse;
-using ResApi.DTA.Intefaces;
-using ResApi.DTO.Property;
-using ResApi.Models;
+using RealesApi.DataResponse;
+using RealesApi.DTA.Intefaces;
+using RealesApi.DTO.Property;
+using RealesApi.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

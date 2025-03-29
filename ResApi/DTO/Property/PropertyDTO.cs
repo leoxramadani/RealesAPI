@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ResApi.DTO.Property
+namespace RealesApi.DTO.Property
 {
 	public class PropertyDTO
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.SignalR;
 
-namespace ResApi.Hubs
+namespace RealesApi.Hubs
 {
 	public class OrderHub : Hub
 	{

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using ResApi.DTA.Intefaces.Shared;
-using ResApi.DTO.Property;
-using ResApi.Models;
+using RealesApi.DTA.Intefaces.Shared;
+using RealesApi.DTO.Property;
+using RealesApi.Models;
 
-namespace ResApi.DTA.Intefaces
+namespace RealesApi.DTA.Intefaces
 {
     public interface IProperty: IBaseService<Property>
 	{

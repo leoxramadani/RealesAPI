@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'ResApi' " />
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions" Version="2.1.0" />
@@ -38,22 +39,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="DTO\Tables\" />
-    <None Remove="DTO\TableWaiter\" />
-    <None Remove="DTO\Role\" />
-    <None Remove="DTO\Permission\" />
     <None Remove="Hubs\" />
-    <None Remove="DTO\LoginDTO\" />
     <None Remove="DTO\Property\" />
     <None Remove="Models\Shared\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTO\Tables\" />
-    <Folder Include="DTO\TableWaiter\" />
-    <Folder Include="DTO\Role\" />
-    <Folder Include="DTO\Permission\" />
     <Folder Include="Hubs\" />
-    <Folder Include="DTO\LoginDTO\" />
     <Folder Include="DTO\Property\" />
     <Folder Include="Models\Shared\" />
   </ItemGroup>

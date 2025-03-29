@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ResApi.Models.Shared
+namespace RealesApi.Models.Shared
 {
 	public class BaseEntity
 	{

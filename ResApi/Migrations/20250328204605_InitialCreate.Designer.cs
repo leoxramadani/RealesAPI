@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ResApi.Models;
+using RealesApi.Models;
 
-namespace ResApi.Migrations
+namespace RealesApi.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20250328204605_InitialCreate")]

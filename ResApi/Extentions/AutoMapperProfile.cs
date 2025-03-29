@@ -1,10 +1,9 @@
 ﻿using System.Linq;
 using AutoMapper;
-using ResApi.DTO;
-using ResApi.DTO.Property;
-using ResApi.Models;
+using RealesApi.DTO.Property;
+using RealesApi.Models;
 
-namespace ResApi.Extentions
+namespace RealesApi.Extentions
 {
     public class AutoMapperProfile : Profile
     {

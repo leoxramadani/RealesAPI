@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace ResApi.DataResponse
+namespace RealesApi.DataResponse
 {
     /// <summary>
     /// DataResponse base class

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace ResApi.Models
+namespace RealesApi.Models
 {
     public partial class DataContext : DbContext
     { 

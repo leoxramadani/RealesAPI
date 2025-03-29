@@ -6,17 +6,17 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.OpenApi.Models;
-    using ResApi.DTA.Intefaces;
-    using ResApi.DTA.Services;
-    using ResApi.DTA.Services.Shared;
-    using ResApi.Extentions;
-    using ResApi.Hubs;
-    using ResApi.Models;
+    using RealesApi.DTA.Intefaces;
+    using RealesApi.DTA.Services;
+    using RealesApi.DTA.Services.Shared;
+    using RealesApi.Extentions;
+    using RealesApi.Hubs;
+    using RealesApi.Models;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.IdentityModel.Tokens;
 
-    namespace ResApi
-    {
+    namespace RealesApi
+{
         public class Startup
         {
             public Startup(IConfiguration configuration)

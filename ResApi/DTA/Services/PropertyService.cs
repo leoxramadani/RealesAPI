@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ResApi.DTA.Intefaces;
-using ResApi.DTA.Services.Shared;
-using ResApi.DTO.Property;
-using ResApi.DTO.Tables;
-using ResApi.Models;
+using RealesApi.DTA.Intefaces;
+using RealesApi.DTA.Services.Shared;
+using RealesApi.DTO.Property;
+using RealesApi.Models;
 
-namespace ResApi.DTA.Services
+namespace RealesApi.DTA.Services
 {
     public class PropertyService : BaseService<Property>, IProperty
     {

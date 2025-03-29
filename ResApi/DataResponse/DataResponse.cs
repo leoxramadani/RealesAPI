@@ -1,7 +1,7 @@
-﻿using ResApi.DataResponse;
+﻿using RealesApi.DataResponse;
 using System.Diagnostics.CodeAnalysis;
 
-namespace ResApi.DataResponse
+namespace RealesApi.DataResponse
 {
     /// <summary>
     /// DataResponse class

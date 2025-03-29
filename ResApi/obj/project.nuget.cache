@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UJkYKDSyHAs=",
+  "dgSpecHash": "bReO/3JdJGVUygykdghCtq90qma4Ufth/XxBINo8OeZyGqThsTEjHX+ji6Q/o0no+xwZral2riyngTn2W73EGA==",
   "success": true,
-  "projectFilePath": "/Users/leoramadani/Documents/reealestApi/ResApi/ResApi.csproj",
+  "projectFilePath": "/Users/leoramadani/Documents/reealestApi/ResApi/RealesApi.csproj",
   "expectedPackageFiles": [
     "/Users/leoramadani/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/automapper.extensions/2.1.0/automapper.extensions.2.1.0.nupkg.sha512",
@@ -152,32 +152,9 @@
     "/Users/leoramadani/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/microsoft.netcore.app.ref/6.0.36/microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.36/microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.36/microsoft.netcore.app.host.osx-arm64.6.0.36.nupkg.sha512"
+    "/Users/leoramadani/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'IdentityServer4' 4.1.2 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-55p7-v223-x366",
-      "libraryId": "IdentityServer4",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'IdentityServer4' 4.1.2 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-ff4q-64jc-gx98",
-      "libraryId": "IdentityServer4",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",

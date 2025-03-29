@@ -1,6 +1,6 @@
-﻿using ResApi.DTO.LoginDTO;
+﻿using RealesApi.DTO.LoginDTO;
 
-namespace ResApi.DTA.Intefaces
+namespace RealesApi.DTA.Intefaces
 {
     public interface IAuth
 	{

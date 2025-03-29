@@ -1,9 +1,9 @@
-﻿using ResApi.DTA.Intefaces;
-using ResApi.Models;
+﻿using RealesApi.DTA.Intefaces;
+using RealesApi.Models;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ResApi.DTA.Services.Shared
+namespace RealesApi.DTA.Services.Shared
 {
     public class UnitOfWork : IUnitOfWork
     {

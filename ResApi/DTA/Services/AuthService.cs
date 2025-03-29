@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using ResApi.DTA.Intefaces;
-using ResApi.DTO.LoginDTO;
-using ResApi.Models;
+using RealesApi.DTA.Intefaces;
+using RealesApi.DTO.LoginDTO;
+using RealesApi.Models;
 
-namespace ResApi.DTA.Services
+namespace RealesApi.DTA.Services
 {
     public class AuthService : IAuth
 	{

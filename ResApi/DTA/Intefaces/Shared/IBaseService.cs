@@ -1,11 +1,11 @@
-﻿using ResApi.Models.Shared;
+﻿using RealesApi.Models.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ResApi.DTA.Intefaces.Shared
+namespace RealesApi.DTA.Intefaces.Shared
 {
     public interface IBaseService<T> where T : BaseEntity
     {
