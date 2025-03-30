@@ -27,6 +27,8 @@ namespace RealesApi.DTA.Services
             _mapper = mapper;
             _context = context;
         }
+
+        //Get all properties
         public async Task<List<PropertyDTO>> GetAllProperties(CancellationToken cancellationToken)
         {
             try
@@ -37,6 +39,7 @@ namespace RealesApi.DTA.Services
                                            .Include(x => x.Users)
                                            .Include(x => x.WhatsSpecial)
                                            .Include(x => x.PropertyType)
+                                           .Where(x => x.Deleted != true)
                                            .Select(x => _mapper.Map<PropertyDTO>(x))
                                            .ToListAsync(cancellationToken);
 
@@ -49,6 +52,117 @@ namespace RealesApi.DTA.Services
             }
             return null;
 
+        }
+
+        //Get property by prop Id
+        public async Task<PropertyDTO> GetPropertyById(Guid propId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                if(propId == Guid.Empty || string.IsNullOrEmpty(propId.ToString()))
+                {
+                    throw new Exception("PropertyId is null");
+                }
+
+
+                var property = await _context.Properties
+                                          .Include(x => x.PropertyOtherImages)
+                                           .Include(x => x.Condition)
+                                           .Include(x => x.Users)
+                                           .Include(x => x.WhatsSpecial)
+                                           .Include(x => x.PropertyType)
+                                           .Where(x => x.Id == propId && x.Deleted != true)
+                                           .Select(x => _mapper.Map<PropertyDTO>(x))
+                                           .FirstOrDefaultAsync(cancellationToken);
+
+                if (property == null)
+                    return null;
+
+                return property;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ex=", ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<PropertyDTO> CreateNewProperty(Property entity)
+        {
+            try
+            {
+                Property prop = new()
+                {
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Admin",
+                    Deleted = false,
+                    ModifiedAt = DateTime.Now,
+                    ModifiedBy = "Admin",
+
+                    AllDocuments = entity.AllDocuments,
+                    Baths = entity.Baths,
+                    BuiltIn = entity.BuiltIn,
+                    ConditionId = entity.ConditionId,
+                    DatePosted = DateTime.Now,
+                    Description = entity.Description,
+                    Location = entity.Location,
+                    MainImage = entity.MainImage,
+                    MonthlyPayment = entity.MonthlyPayment,
+                    Name = entity.Name,
+                    OtherImagesId = entity.OtherImagesId,
+                    Price = entity.Price,
+                    PriceRange = entity.PriceRange,
+                    PropertyTypeId = entity.PropertyTypeId,
+                    PurposeId = entity.PurposeId,
+                    ReviewsRates = entity.ReviewsRates,
+                    Rooms = entity.Rooms,
+                    Saves = entity.Saves,
+                    Size = entity.Saves,
+                    SellerId = entity.SellerId,
+                    Views = entity.Views,
+                    WhatsSpecialId = entity.WhatsSpecialId
+                };
+
+                _context.Properties.Add(prop);
+                await _context.SaveChangesAsync();
+
+
+                var propMapped = _mapper.Map<PropertyDTO>(prop);
+
+                return propMapped;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ex=", ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<PropertyDTO> SoftDeleteProperty(Guid propId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                if (propId == Guid.Empty || string.IsNullOrEmpty(propId.ToString()))
+                {
+                    throw new Exception("PropertyId is null");
+                }
+
+                var property = await _context.Properties
+                                             .Where(x => x.Id == propId)
+                                             .FirstOrDefaultAsync(cancellationToken);
+
+                property.Deleted = true;
+
+                _context.Properties.Update(property);
+                await _context.SaveChangesAsync();
+
+                return _mapper.Map<PropertyDTO>(property);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ex=", ex.Message);
+                throw;
+            }
         }
 
     }

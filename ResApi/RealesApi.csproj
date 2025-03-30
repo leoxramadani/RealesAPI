@@ -42,10 +42,14 @@
     <None Remove="Hubs\" />
     <None Remove="DTO\Property\" />
     <None Remove="Models\Shared\" />
+    <None Remove="Helpers\" />
+    <None Remove="Helpers\HashService\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Hubs\" />
     <Folder Include="DTO\Property\" />
     <Folder Include="Models\Shared\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Helpers\HashService\" />
   </ItemGroup>
 </Project>

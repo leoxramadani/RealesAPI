@@ -14,8 +14,9 @@
     using RealesApi.Models;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.IdentityModel.Tokens;
+using RealesApi.Helpers.HashService;
 
-    namespace RealesApi
+namespace RealesApi
 {
         public class Startup
         {
@@ -39,6 +40,7 @@
                 services.AddScoped<IUnitOfWork, UnitOfWork>();
                 services.AddScoped<IAuth, AuthService>();
                 services.AddScoped<IProperty, PropertyService>();
+                services.AddScoped<IHashService, HashService>();
 
             services.AddSignalR();
                 services.AddControllers();
