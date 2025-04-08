@@ -2,14 +2,13 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using RealesApi.DTA.Intefaces;
 using RealesApi.DTO.LoginDTO;
 
-namespace ResApi.Controllers
+namespace RealesApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

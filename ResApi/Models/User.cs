@@ -11,6 +11,7 @@ namespace RealesApi.Models
         public User()
         {
             Properties = new HashSet<Property>();
+            SaveProperty = new HashSet<SaveProperty>();
         }
 
         public string Name { get; set; }
@@ -22,5 +23,6 @@ namespace RealesApi.Models
 
 
         public virtual ICollection<Property> Properties { get; set; }
+        public virtual ICollection<SaveProperty> SaveProperty { get; set; }
     }
 }

@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ResApi": {
+    "RealesApi": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

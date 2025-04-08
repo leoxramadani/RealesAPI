@@ -16,7 +16,6 @@ namespace RealesApi.DTA.Services
     public class PropertyService : BaseService<Property>, IProperty
     {
         private readonly ILogger<Property> _logger;
-         
         private readonly IMapper _mapper;
         private readonly DataContext _context;
 
@@ -37,8 +36,9 @@ namespace RealesApi.DTA.Services
                                            .Include(x => x.PropertyOtherImages)
                                            .Include(x => x.Condition)
                                            .Include(x => x.Users)
-                                           .Include(x => x.WhatsSpecial)
+                                           .Include(x => x.PropertyWhatsSpecialLinks)
                                            .Include(x => x.PropertyType)
+                                           .Include(x => x.Purpose)
                                            .Where(x => x.Deleted != true)
                                            .Select(x => _mapper.Map<PropertyDTO>(x))
                                            .ToListAsync(cancellationToken);
@@ -69,7 +69,7 @@ namespace RealesApi.DTA.Services
                                           .Include(x => x.PropertyOtherImages)
                                            .Include(x => x.Condition)
                                            .Include(x => x.Users)
-                                           .Include(x => x.WhatsSpecial)
+                                           .Include(x => x.PropertyWhatsSpecialLinks)
                                            .Include(x => x.PropertyType)
                                            .Where(x => x.Id == propId && x.Deleted != true)
                                            .Select(x => _mapper.Map<PropertyDTO>(x))
@@ -87,7 +87,7 @@ namespace RealesApi.DTA.Services
             }
         }
 
-        public async Task<PropertyDTO> CreateNewProperty(Property entity)
+        public async Task<PropertyDTO> CreateNewProperty(PropertyDTO entity)
         {
             try
             {
@@ -120,7 +120,6 @@ namespace RealesApi.DTA.Services
                     Size = entity.Saves,
                     SellerId = entity.SellerId,
                     Views = entity.Views,
-                    WhatsSpecialId = entity.WhatsSpecialId
                 };
 
                 _context.Properties.Add(prop);

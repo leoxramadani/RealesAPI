@@ -12,6 +12,7 @@ namespace RealesApi.Models
         {
             PropertyOtherImages = new HashSet<PropertyOtherImage>();
             PropertyWhatsSpecialLinks = new HashSet<PropertyWhatsSpecialLink>();
+            SaveProperty = new HashSet<SaveProperty>();
         }
 
         public string Name { get; set; }
@@ -35,14 +36,14 @@ namespace RealesApi.Models
         public Guid PropertyTypeId { get; set; }
         public Guid PurposeId { get; set; }
         public string PriceRange { get; set; }
-        public Guid? WhatsSpecialId { get; set; }
 
         public virtual Condition Condition { get; set; }
         public virtual PropertyType PropertyType { get; set; }
         public virtual Purpose Purpose { get; set; }
         public virtual User Users { get; set; }
-        public virtual WhatsSpecial WhatsSpecial { get; set; }
         public virtual ICollection<PropertyOtherImage> PropertyOtherImages { get; set; }
         public virtual ICollection<PropertyWhatsSpecialLink> PropertyWhatsSpecialLinks { get; set; }
+        public virtual ICollection<SaveProperty> SaveProperty { get; set; }
+
     }
 }

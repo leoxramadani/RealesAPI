@@ -9,13 +9,11 @@ namespace RealesApi.Models
     {
         public WhatsSpecial()
         {
-            Properties = new HashSet<Property>();
             PropertyWhatsSpecialLinks = new HashSet<PropertyWhatsSpecialLink>();
         }
 
         public string Name { get; set; }
 
-        public virtual ICollection<Property> Properties { get; set; }
         public virtual ICollection<PropertyWhatsSpecialLink> PropertyWhatsSpecialLinks { get; set; }
     }
 }

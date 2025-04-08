@@ -4,7 +4,6 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'ResApi' " />
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions" Version="2.1.0" />
@@ -44,6 +43,7 @@
     <None Remove="Models\Shared\" />
     <None Remove="Helpers\" />
     <None Remove="Helpers\HashService\" />
+    <None Remove="DTO\WhatsSpecialLinkDTO\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Hubs\" />
@@ -51,5 +51,6 @@
     <Folder Include="Models\Shared\" />
     <Folder Include="Helpers\" />
     <Folder Include="Helpers\HashService\" />
+    <Folder Include="DTO\WhatsSpecialLinkDTO\" />
   </ItemGroup>
 </Project>

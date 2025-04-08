@@ -153,11 +153,6 @@ namespace RealesApi.Models
                     .HasForeignKey(d => d.SellerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Property__Seller__2FCF1A8A");
-
-                entity.HasOne(d => d.WhatsSpecial)
-                    .WithMany(p => p.Properties)
-                    .HasForeignKey(d => d.WhatsSpecialId)
-                    .HasConstraintName("FK__Property__WhatsS__778AC167");
             });
 
             modelBuilder.Entity<PropertyOtherImage>(entity =>

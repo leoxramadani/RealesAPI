@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using IdentityModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RealesApi.DataResponse;
@@ -12,7 +11,7 @@ using RealesApi.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace ResApi.Controllers
+namespace RealesApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -77,7 +76,7 @@ namespace ResApi.Controllers
 
         [HttpPost]
         [Route("CreateNewProperty")]
-        public async Task<ActionResult<PropertyDTO>> CreateNewProperty(Property entity,CancellationToken cancellationToken)
+        public async Task<ActionResult<PropertyDTO>> CreateNewProperty(PropertyDTO entity,CancellationToken cancellationToken)
         {
             try
             {

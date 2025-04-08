@@ -41,6 +41,7 @@ namespace RealesApi
                 services.AddScoped<IAuth, AuthService>();
                 services.AddScoped<IProperty, PropertyService>();
                 services.AddScoped<IHashService, HashService>();
+            services.AddScoped<IWhatsSpecialPropertyLink, WhatsSpecialPropertyLinkService>();
 
             services.AddSignalR();
                 services.AddControllers();
@@ -124,7 +125,7 @@ namespace RealesApi
                 {
                     app.UseDeveloperExceptionPage();
                     app.UseSwagger();
-                    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ResApi v1"));
+                    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RealesApi v1"));
                 }
 
                 app.UseHttpsRedirection();

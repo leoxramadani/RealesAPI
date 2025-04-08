@@ -10,8 +10,8 @@ using RealesApi.Models;
 namespace RealesApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250328204605_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250408224656_RemovedLinkPropertyWithTableWhatsSpecial")]
+    partial class RemovedLinkPropertyWithTableWhatsSpecial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -272,9 +272,6 @@ namespace RealesApi.Migrations
                         .HasColumnType("int")
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<Guid?>("WhatsSpecialId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ConditionId");
@@ -284,8 +281,6 @@ namespace RealesApi.Migrations
                     b.HasIndex("PurposeId");
 
                     b.HasIndex("SellerId");
-
-                    b.HasIndex("WhatsSpecialId");
 
                     b.ToTable("Property");
                 });
@@ -434,6 +429,45 @@ namespace RealesApi.Migrations
                     b.ToTable("Purpose");
                 });
 
+            modelBuilder.Entity("RealesApi.Models.SaveProperty", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PropertyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SellerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UsersId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PropertyId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("SaveProperty");
+                });
+
             modelBuilder.Entity("RealesApi.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -482,6 +516,9 @@ namespace RealesApi.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -565,11 +602,6 @@ namespace RealesApi.Migrations
                         .HasConstraintName("FK__Property__Seller__2FCF1A8A")
                         .IsRequired();
 
-                    b.HasOne("RealesApi.Models.WhatsSpecial", "WhatsSpecial")
-                        .WithMany("Properties")
-                        .HasForeignKey("WhatsSpecialId")
-                        .HasConstraintName("FK__Property__WhatsS__778AC167");
-
                     b.Navigation("Condition");
 
                     b.Navigation("PropertyType");
@@ -577,8 +609,6 @@ namespace RealesApi.Migrations
                     b.Navigation("Purpose");
 
                     b.Navigation("Users");
-
-                    b.Navigation("WhatsSpecial");
                 });
 
             modelBuilder.Entity("RealesApi.Models.PropertyOtherImage", b =>
@@ -621,6 +651,23 @@ namespace RealesApi.Migrations
                     b.Navigation("WhatsSpecial");
                 });
 
+            modelBuilder.Entity("RealesApi.Models.SaveProperty", b =>
+                {
+                    b.HasOne("RealesApi.Models.Property", "Property")
+                        .WithMany("SaveProperty")
+                        .HasForeignKey("PropertyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RealesApi.Models.User", "Users")
+                        .WithMany("SaveProperty")
+                        .HasForeignKey("UsersId");
+
+                    b.Navigation("Property");
+
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("RealesApi.Models.Condition", b =>
                 {
                     b.Navigation("Properties");
@@ -641,6 +688,8 @@ namespace RealesApi.Migrations
                     b.Navigation("PropertyOtherImages");
 
                     b.Navigation("PropertyWhatsSpecialLinks");
+
+                    b.Navigation("SaveProperty");
                 });
 
             modelBuilder.Entity("RealesApi.Models.PropertyType", b =>
@@ -656,12 +705,12 @@ namespace RealesApi.Migrations
             modelBuilder.Entity("RealesApi.Models.User", b =>
                 {
                     b.Navigation("Properties");
+
+                    b.Navigation("SaveProperty");
                 });
 
             modelBuilder.Entity("RealesApi.Models.WhatsSpecial", b =>
                 {
-                    b.Navigation("Properties");
-
                     b.Navigation("PropertyWhatsSpecialLinks");
                 });
 #pragma warning restore 612, 618

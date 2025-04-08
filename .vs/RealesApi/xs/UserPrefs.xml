@@ -1,0 +1,39 @@
+﻿<Properties StartupConfiguration="{CF3C8B4C-7B71-4D41-B0E7-62F7D323FCEF}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.RealesApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ResApi/Program.cs">
+    <Files>
+      <File FileName="ResApi/DTA/Services/PropertyService.cs" />
+      <File FileName="ResApi/DTA/Intefaces/IProperty.cs" />
+      <File FileName="ResApi/Models/Property.cs" />
+      <File FileName="ResApi/Models/User.cs" Line="18" Column="48" />
+      <File FileName="ResApi/Migrations/20250330004131_AddedPasswordColumn.cs" />
+      <File FileName="ResApi/Helpers/HashService/HashService.cs" />
+      <File FileName="ResApi/Helpers/HashService/IHashService.cs" />
+      <File FileName="ResApi/appsettings.json" Line="18" Column="59" />
+      <File FileName="ResApi/Startup.cs" Line="127" Column="99" />
+      <File FileName="ResApi/Controllers/PropertyController.cs" Line="5" Column="36" />
+      <File FileName="ResApi/Properties/launchSettings.json" Line="20" Column="15" />
+      <File FileName="ResApi/Migrations/20250328204605_InitialCreate.Designer.cs" Line="98" Column="20" />
+      <File FileName="ResApi/Controllers/AuthController.cs" Line="28" Column="70" />
+      <File FileName="ResApi/Program.cs" Line="23" Column="54" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="RealesApi">
+            <Node name="RealesApi">
+              <Node name="Models" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>

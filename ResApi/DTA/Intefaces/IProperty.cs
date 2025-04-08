@@ -12,7 +12,7 @@ namespace RealesApi.DTA.Intefaces
 	{
         Task<List<PropertyDTO>> GetAllProperties(CancellationToken cancellationToken);
         Task<PropertyDTO> GetPropertyById(Guid propId, CancellationToken cancellationToken);
-        Task<PropertyDTO> CreateNewProperty(Property entity);
+        Task<PropertyDTO> CreateNewProperty(PropertyDTO entity);
         Task<PropertyDTO> SoftDeleteProperty(Guid propId, CancellationToken cancellationToken);
 
     }

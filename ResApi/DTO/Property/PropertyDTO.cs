@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using RealesApi.DTO.WhatsSpecialDTO;
+
 namespace RealesApi.DTO.Property
 {
 	public class PropertyDTO
@@ -20,20 +23,24 @@ namespace RealesApi.DTO.Property
         public bool MonthlyPayment{ get; set; }
 
         public string ConditionName { get; set; }
-
+        public Guid ConditionId { get; set; }
+        public Guid PropertyTypeId { get; set; }
 
         public Guid UserId { get; set; }
+        public Guid SellerId { get; set; }
         public string UserName { get; set; }
         public string UserLastName { get; set; }
         public string  UserEmail { get; set; }
+        public string UserPhone { get; set; }
 
         public string Description { get; set; }
         public string Location { get; set; }
         public string PropertyTypeName { get; set; }
 
         public string PurposeName{ get; set; }
+        public Guid PurposeId { get; set; }
         public string PriceRange { get; set; }
-        public string WhatsSpecialName { get; set; }
+        public List<WhatsSpecialLinkDTO> WhatsSpecialNames { get; set; }
 
 
         public string CreatedBy { get; set; }
