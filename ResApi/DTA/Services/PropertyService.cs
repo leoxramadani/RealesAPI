@@ -40,6 +40,7 @@ namespace RealesApi.DTA.Services
                                            .Include(x => x.PropertyType)
                                            .Include(x => x.Purpose)
                                            .Where(x => x.Deleted != true)
+                                           .OrderByDescending(x => x.DatePosted)
                                            .Select(x => _mapper.Map<PropertyDTO>(x))
                                            .ToListAsync(cancellationToken);
 
@@ -102,12 +103,12 @@ namespace RealesApi.DTA.Services
                     Deleted = false,
                     ModifiedAt = DateTime.Now,
                     ModifiedBy = "Admin",
-                    
+                    DatePosted = DateTime.Now,
+
                     AllDocuments = entity.AllDocuments,
                     Baths = entity.Baths,
                     BuiltIn = entity.BuiltIn,
                     ConditionId = entity.ConditionId,
-                    DatePosted = DateTime.Now,
                     Description = entity.Description,
                     Location = entity.Location,
                     MainImage = entity.MainImage,
@@ -128,17 +129,16 @@ namespace RealesApi.DTA.Services
                 _context.Properties.Add(prop);
                 await _context.SaveChangesAsync();
 
-                var propertyId = _context.Properties.Where(x => x.Id == entity.SellerId).OrderByDescending(x => x.CreatedAt).Select(x=>x.Id).First();
-
-                if(entity.WhatsSpecialNames.Count > 1)
+                if(entity.WhatsSpecialNames.Count > 0)
                 {
-                    PropertyWhatsSpecialLink pwsl = new()
-                    {
-                        PropertyId = propertyId
-                    };
+
                     foreach (var item in entity.WhatsSpecialNames)
                     {
-                        pwsl.WhatsSpecialId = item.Id;
+                        PropertyWhatsSpecialLink pwsl = new()
+                        {
+                            PropertyId = prop.Id,
+                            WhatsSpecialId = item.Id,
+                        };
                         _context.PropertyWhatsSpecialLinks.Add(pwsl);
                         await _context.SaveChangesAsync();
                     }

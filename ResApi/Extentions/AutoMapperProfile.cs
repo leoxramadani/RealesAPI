@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RealesApi.DTO.ConditionsDTO;
 using RealesApi.DTO.Property;
 using RealesApi.DTO.PropertyTypeDTO;
 using RealesApi.DTO.PurposeDTO;
@@ -33,6 +34,10 @@ namespace RealesApi.Extentions
             CreateMap<PurposeDTO, Purpose>().ReverseMap()
                     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
+            
+            CreateMap<ConditionsDTO, Condition>().ReverseMap()
+                   .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                   .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
 
             CreateMap<WhatsSpecialDTO, WhatsSpecial>().ReverseMap()
                     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))

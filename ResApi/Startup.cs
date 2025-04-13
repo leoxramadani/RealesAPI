@@ -43,7 +43,8 @@ namespace RealesApi
                 services.AddScoped<IHashService, HashService>();
                 services.AddScoped<IPropertyType, PropertyTypeService>();
                 services.AddScoped<IPurpose, PurposeService>();
-            services.AddScoped<IWhatsSpecialPropertyLink, WhatsSpecialPropertyLinkService>();
+                services.AddScoped<IConditions, ConditionsServices>();
+                services.AddScoped<IWhatsSpecialPropertyLink, WhatsSpecialPropertyLinkService>();
 
             services.AddSignalR();
                 services.AddControllers();

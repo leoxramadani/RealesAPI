@@ -47,6 +47,7 @@
     <None Remove="DTO\PropertyTypeDTO\" />
     <None Remove="DTO\PurposeDTO\" />
     <None Remove="DTO\WhatsSpecialDTO\" />
+    <None Remove="DTO\ConditionsDTO\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Hubs\" />
@@ -58,5 +59,6 @@
     <Folder Include="DTO\PropertyTypeDTO\" />
     <Folder Include="DTO\PurposeDTO\" />
     <Folder Include="DTO\WhatsSpecialDTO\" />
+    <Folder Include="DTO\ConditionsDTO\" />
   </ItemGroup>
 </Project>
