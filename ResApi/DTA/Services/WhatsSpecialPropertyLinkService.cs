@@ -104,7 +104,7 @@ namespace RealesApi.DTA.Services
                 var wsMapped = _mapper.Map<WhatsSpecialDTO>(ws);
 
                 return wsMapped;
-
+                ls
             }
             catch (Exception ex)
             {
