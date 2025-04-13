@@ -8,8 +8,10 @@ namespace RealesApi.DTA.Intefaces
 {
 	public interface IWhatsSpecialPropertyLink
 	{
-        Task<List<WhatsSpecialLinkDTO>> GetAllSpecials(CancellationToken cancellationToken);
+        Task<List<WhatsSpecialLinkDTO>> GetAllSpecialsLinks(CancellationToken cancellationToken);
         Task<List<WhatsSpecialLinkDTO>> GetSpecialsById(Guid propId, CancellationToken cancellationToken);
+        Task<WhatsSpecialDTO> CreateWhatsSpecial(WhatsSpecialDTO entity);
+        Task<List<WhatsSpecialDTO>> GetAllSpecials(CancellationToken cancellationToken);
     }
 }
 

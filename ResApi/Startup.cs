@@ -41,6 +41,8 @@ namespace RealesApi
                 services.AddScoped<IAuth, AuthService>();
                 services.AddScoped<IProperty, PropertyService>();
                 services.AddScoped<IHashService, HashService>();
+                services.AddScoped<IPropertyType, PropertyTypeService>();
+                services.AddScoped<IPurpose, PurposeService>();
             services.AddScoped<IWhatsSpecialPropertyLink, WhatsSpecialPropertyLinkService>();
 
             services.AddSignalR();

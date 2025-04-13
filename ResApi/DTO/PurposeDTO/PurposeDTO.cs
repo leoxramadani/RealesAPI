@@ -1,8 +1,8 @@
 ﻿using System;
-namespace RealesApi.DTO.WhatsSpecialDTO
+namespace RealesApi.DTO.PurposeDTO
 {
-	public class WhatsSpecialLinkDTO
-    {
+	public class PurposeDTO
+	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }
 	}

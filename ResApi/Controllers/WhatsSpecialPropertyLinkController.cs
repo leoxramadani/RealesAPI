@@ -33,6 +33,28 @@ namespace RealesApi.Controllers
         }
 
         [HttpGet]
+        [Route("GetAllSpecialsLinks")]
+        public async Task<ActionResult<WhatsSpecialLinkDTO>> GetAllSpecialsLinks(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var response = await _whatsSpecial.GetAllSpecialsLinks(cancellationToken);
+                await _unitOfWork.Save(cancellationToken);
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+                //_logger.Error(e, "Register POST request");
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't find any properties"
+
+                };
+                return BadRequest(errRet);
+            }
+        }
+        [HttpGet]
         [Route("GetAllSpecials")]
         public async Task<ActionResult<WhatsSpecialLinkDTO>> GetAllSpecials(CancellationToken cancellationToken)
         {
@@ -61,6 +83,28 @@ namespace RealesApi.Controllers
             try
             {
                 var property = await _whatsSpecial.GetSpecialsById(propId, cancellationToken);
+                await _unitOfWork.Save(cancellationToken);
+                return Ok(property);
+            }
+            catch (Exception ex)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't find your property."
+
+                };
+                return BadRequest(errRet);
+            }
+
+        }
+        [HttpPost]
+        [Route("CreateWhatsSpecial")]
+        public async Task<ActionResult<PropertyDTO>> CreateWhatsSpecial(WhatsSpecialDTO entity, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var property = await _whatsSpecial.CreateWhatsSpecial(entity);
                 await _unitOfWork.Save(cancellationToken);
                 return Ok(property);
             }

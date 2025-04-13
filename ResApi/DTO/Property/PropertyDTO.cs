@@ -13,7 +13,6 @@ namespace RealesApi.DTO.Property
         public DateTime DatePosted { get; set; }
         public int Saves { get; set; }
         public string MainImage { get; set; }
-        public Guid OtherImagesId{ get; set; }
         public decimal Price { get; set; }
         public int Rooms{ get; set; }
         public int Baths{ get; set; }

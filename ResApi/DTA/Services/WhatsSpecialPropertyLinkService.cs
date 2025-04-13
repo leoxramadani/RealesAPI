@@ -29,7 +29,7 @@ namespace RealesApi.DTA.Services
             _mapper = mapper;
             _context = context;
         }
-        public async Task<List<WhatsSpecialLinkDTO>> GetAllSpecials(CancellationToken cancellationToken)
+        public async Task<List<WhatsSpecialLinkDTO>> GetAllSpecialsLinks(CancellationToken cancellationToken)
         {
             try
             {
@@ -78,6 +78,59 @@ namespace RealesApi.DTA.Services
                 Console.WriteLine("Ex=", ex.Message);
                 throw;
             }
+        }
+
+        public async Task<WhatsSpecialDTO> CreateWhatsSpecial(WhatsSpecialDTO entity)
+        {
+            try
+            {
+                if (entity == null)
+                    return null;
+
+                WhatsSpecial ws = new()
+                {
+                    Name = entity.Name,
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "Admin",
+                    ModifiedAt = DateTime.UtcNow,
+                    ModifiedBy = "Admin",
+                    Deleted = false,
+                };
+
+                _context.WhatsSpecials.Add(ws);
+                await _context.SaveChangesAsync();
+
+
+                var wsMapped = _mapper.Map<WhatsSpecialDTO>(ws);
+
+                return wsMapped;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ex=", ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<List<WhatsSpecialDTO>> GetAllSpecials(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var entity = await _context.WhatsSpecials
+                                           .Where(x => x.Deleted != true)
+                                           .Select(x => _mapper.Map<WhatsSpecialDTO>(x))
+                                           .ToListAsync(cancellationToken);
+
+
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+
         }
     }
 }

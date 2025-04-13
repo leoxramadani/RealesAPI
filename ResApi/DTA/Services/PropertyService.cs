@@ -91,6 +91,10 @@ namespace RealesApi.DTA.Services
         {
             try
             {
+                if(entity == null)
+                {
+                    return null;
+                }
                 Property prop = new()
                 {
                     CreatedAt = DateTime.Now,
@@ -98,7 +102,7 @@ namespace RealesApi.DTA.Services
                     Deleted = false,
                     ModifiedAt = DateTime.Now,
                     ModifiedBy = "Admin",
-
+                    
                     AllDocuments = entity.AllDocuments,
                     Baths = entity.Baths,
                     BuiltIn = entity.BuiltIn,
@@ -109,7 +113,6 @@ namespace RealesApi.DTA.Services
                     MainImage = entity.MainImage,
                     MonthlyPayment = entity.MonthlyPayment,
                     Name = entity.Name,
-                    OtherImagesId = entity.OtherImagesId,
                     Price = entity.Price,
                     PriceRange = entity.PriceRange,
                     PropertyTypeId = entity.PropertyTypeId,
@@ -125,6 +128,21 @@ namespace RealesApi.DTA.Services
                 _context.Properties.Add(prop);
                 await _context.SaveChangesAsync();
 
+                var propertyId = _context.Properties.Where(x => x.Id == entity.SellerId).OrderByDescending(x => x.CreatedAt).Select(x=>x.Id).First();
+
+                if(entity.WhatsSpecialNames.Count > 1)
+                {
+                    PropertyWhatsSpecialLink pwsl = new()
+                    {
+                        PropertyId = propertyId
+                    };
+                    foreach (var item in entity.WhatsSpecialNames)
+                    {
+                        pwsl.WhatsSpecialId = item.Id;
+                        _context.PropertyWhatsSpecialLinks.Add(pwsl);
+                        await _context.SaveChangesAsync();
+                    }
+                }
 
                 var propMapped = _mapper.Map<PropertyDTO>(prop);
 

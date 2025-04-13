@@ -14,7 +14,6 @@ namespace RealesApi.Models
         public virtual DbSet<Condition> Conditions { get; set; }
         public virtual DbSet<Faq> Faqs { get; set; }
         public virtual DbSet<Faqtype> Faqtypes { get; set; }
-        public virtual DbSet<OtherImage> OtherImages { get; set; }
         public virtual DbSet<Property> Properties { get; set; }
         public virtual DbSet<PropertyOtherImage> PropertyOtherImages { get; set; }
         public virtual DbSet<PropertyType> PropertyTypes { get; set; }
@@ -28,7 +27,7 @@ namespace RealesApi.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=192.168.1.29,1433;Database=realest;User Id=sa;Password=Ramadani.0402;TrustServerCertificate=True;Persist Security Info=True;");
+                optionsBuilder.UseSqlServer("Server=192.168.1.33,1433;Database=realest;User Id=sa;Password=Ramadani.0402;TrustServerCertificate=True;Persist Security Info=True;");
             }
         }
 
@@ -79,16 +78,6 @@ namespace RealesApi.Models
                     .HasMaxLength(255);
             });
 
-            modelBuilder.Entity<OtherImage>(entity =>
-            {
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .HasDefaultValueSql("(newid())");
-
-                entity.Property(e => e.Base64stringImage)
-                    .IsRequired()
-                    .HasColumnName("base64stringImage");
-            });
 
             modelBuilder.Entity<Property>(entity =>
             {
@@ -160,11 +149,6 @@ namespace RealesApi.Models
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasDefaultValueSql("(newid())");
-
-                entity.HasOne(d => d.OtherImages)
-                    .WithMany(p => p.PropertyOtherImages)
-                    .HasForeignKey(d => d.OtherImagesId)
-                    .HasConstraintName("FK__PropertyO__Other__7B5B524B");
 
                 entity.HasOne(d => d.Property)
                     .WithMany(p => p.PropertyOtherImages)

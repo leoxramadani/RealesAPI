@@ -44,6 +44,9 @@
     <None Remove="Helpers\" />
     <None Remove="Helpers\HashService\" />
     <None Remove="DTO\WhatsSpecialLinkDTO\" />
+    <None Remove="DTO\PropertyTypeDTO\" />
+    <None Remove="DTO\PurposeDTO\" />
+    <None Remove="DTO\WhatsSpecialDTO\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Hubs\" />
@@ -52,5 +55,8 @@
     <Folder Include="Helpers\" />
     <Folder Include="Helpers\HashService\" />
     <Folder Include="DTO\WhatsSpecialLinkDTO\" />
+    <Folder Include="DTO\PropertyTypeDTO\" />
+    <Folder Include="DTO\PurposeDTO\" />
+    <Folder Include="DTO\WhatsSpecialDTO\" />
   </ItemGroup>
 </Project>
