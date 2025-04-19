@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bReO/3JdJGVUygykdghCtq90qma4Ufth/XxBINo8OeZyGqThsTEjHX+ji6Q/o0no+xwZral2riyngTn2W73EGA==",
+  "dgSpecHash": "5SdJKEhn543N19f1wizW6RYIIgOD4i7X2OTiNAk62a7gIDMnv9a9+OO9v4JmWW7lapm74bhnmp4y4Jcdh/BFUg==",
   "success": true,
   "projectFilePath": "/Users/leoramadani/Documents/reealestApi/ResApi/RealesApi.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,8 @@
     "/Users/leoramadani/.nuget/packages/identitymodel/4.4.0/identitymodel.4.4.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/identityserver4/4.1.2/identityserver4.4.1.2.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/identityserver4.storage/4.1.2/identityserver4.storage.4.1.2.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/jsonsubtypes/2.0.1/jsonsubtypes.2.0.1.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/kinde.sdk/1.2.11/kinde.sdk.1.2.11.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/lib.net.http.encryptedcontentencoding/2.1.0/lib.net.http.encryptedcontentencoding.2.1.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/lib.net.http.webpush/3.2.1/lib.net.http.webpush.3.2.1.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.aspnet.webapi.client/6.0.0/microsoft.aspnet.webapi.client.6.0.0.nupkg.sha512",
@@ -51,7 +53,9 @@
     "/Users/leoramadani/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.extensions.caching.abstractions/5.0.0/microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.extensions.caching.memory/5.0.0/microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/microsoft.extensions.configuration.abstractions/5.0.0/microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/microsoft.extensions.configuration/6.0.1/microsoft.extensions.configuration.6.0.1.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/microsoft.extensions.configuration.abstractions/6.0.0/microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/microsoft.extensions.configuration.binder/6.0.0/microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.extensions.dependencyinjection/5.0.2/microsoft.extensions.dependencyinjection.5.0.2.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.extensions.features/8.0.7/microsoft.extensions.features.8.0.7.nupkg.sha512",
@@ -75,10 +79,11 @@
     "/Users/leoramadani/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.win32.systemevents/4.7.0/microsoft.win32.systemevents.4.7.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/npgsql/5.0.10/npgsql.5.0.10.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/npgsql.entityframeworkcore.postgresql/5.0.10/npgsql.entityframeworkcore.postgresql.5.0.10.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/polly/7.2.3/polly.7.2.3.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/runtime.native.system/4.3.0/runtime.native.system.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/serilog/4.0.0/serilog.4.0.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
@@ -152,7 +157,10 @@
     "/Users/leoramadani/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "/Users/leoramadani/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.31/microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.31/microsoft.netcore.app.host.osx-arm64.6.0.31.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/microsoft.netcore.app.ref/6.0.31/microsoft.netcore.app.ref.6.0.31.nupkg.sha512"
   ],
   "logs": [
     {

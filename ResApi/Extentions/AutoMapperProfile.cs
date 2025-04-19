@@ -25,7 +25,8 @@ namespace RealesApi.Extentions
                     .ForMember(dest => dest.WhatsSpecialNames, opt => opt.MapFrom(src => src.PropertyWhatsSpecialLinks));
 
             CreateMap<WhatsSpecialLinkDTO, PropertyWhatsSpecialLink>().ReverseMap()
-                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
+                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.WhatsSpecial.Name));
 
             CreateMap<PropertyTypeDTO, PropertyType>().ReverseMap()
                     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))

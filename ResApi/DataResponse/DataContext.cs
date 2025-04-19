@@ -21,6 +21,7 @@ namespace RealesApi.Models
         public virtual DbSet<Purpose> Purposes { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<WhatsSpecial> WhatsSpecials { get; set; }
+        public virtual DbSet<SaveProperty> SaveProperties { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -252,6 +253,23 @@ namespace RealesApi.Models
                     .IsRequired()
                     .HasMaxLength(255)
                     .HasColumnName("name");
+            });
+
+            modelBuilder.Entity<SaveProperty>(entity =>
+            {
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+                entity.HasOne(d => d.Property)
+                    .WithMany(p => p.SaveProperty)
+                    .HasForeignKey(d => d.PropertyId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_SaveProperty_Property_PropertyId");
+
+                entity.HasOne(d => d.Users)
+                    .WithMany(p => p.SaveProperty)
+                    .HasForeignKey(d => d.SellerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_SaveProperty_Users_UsersId");
             });
 
             OnModelCreatingPartial(modelBuilder);

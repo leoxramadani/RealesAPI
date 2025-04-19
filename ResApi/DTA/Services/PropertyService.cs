@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using RealesApi.DTA.Intefaces;
 using RealesApi.DTA.Services.Shared;
 using RealesApi.DTO.Property;
+using RealesApi.DTO.SavePropertyDTO;
 using RealesApi.Models;
 
 namespace RealesApi.DTA.Services
@@ -54,6 +55,34 @@ namespace RealesApi.DTA.Services
             return null;
 
         }
+        //Get three latest properties
+        public async Task<List<PropertyDTO>> GetLatestThreeProperties(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var entity = await _context.Properties
+                                           .Include(x => x.PropertyOtherImages)
+                                           .Include(x => x.Condition)
+                                           .Include(x => x.Users)
+                                           .Include(x => x.PropertyWhatsSpecialLinks)
+                                           .Include(x => x.PropertyType)
+                                           .Include(x => x.Purpose)
+                                           .Where(x => x.Deleted != true)
+                                           .OrderByDescending(x => x.DatePosted)
+                                           .Select(x => _mapper.Map<PropertyDTO>(x))
+                                           .Take(3)
+                                           .ToListAsync(cancellationToken);
+
+
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+
+        }
 
         //Get property by prop Id
         public async Task<PropertyDTO> GetPropertyById(Guid propId, CancellationToken cancellationToken)
@@ -80,6 +109,116 @@ namespace RealesApi.DTA.Services
                     return null;
 
                 return property;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ex=", ex.Message);
+                throw;
+            }
+        }
+        //Get property by seller Id
+        public async Task<List<PropertyDTO>> GetPropertyBySellerId(Guid sellerId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                if (sellerId == Guid.Empty || string.IsNullOrEmpty(sellerId.ToString()))
+                {
+                    throw new Exception("SellerId is null");
+                }
+
+
+                var property = await _context.Properties
+                                          .Include(x => x.PropertyOtherImages)
+                                           .Include(x => x.Condition)
+                                           .Include(x => x.Users)
+                                           .Include(x => x.PropertyWhatsSpecialLinks)
+                                           .Include(x => x.PropertyType)
+                                           .Where(x => x.SellerId == sellerId && x.Deleted != true)
+                                           .Select(x => _mapper.Map<PropertyDTO>(x))
+                                           .ToListAsync(cancellationToken);
+
+                if (property == null)
+                    return null;
+
+                return property;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ex=", ex.Message);
+                throw;
+            }
+        }
+        public int GetPropCountForSeller(Guid sellerId)
+        {
+            try
+            {
+                if (sellerId == Guid.Empty || string.IsNullOrEmpty(sellerId.ToString()))
+                {
+                    throw new Exception("SellerId is null");
+                }
+
+                var countProps = _context.Properties.Where(x => x.SellerId == sellerId).Count();
+
+                return countProps;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ex=", ex.Message);
+                throw;
+            }
+        }
+        public async Task<bool> SaveProperty(SavePropertyDTO entity)
+        {
+            try
+            {
+                if (entity == null)
+                    return false;
+
+                var checkIfAlreadySaved = _context.SaveProperties.Any(x => x.PropertyId == entity.PropertyId && x.SellerId == entity.SellerId);
+                if (checkIfAlreadySaved)
+                    return false;
+
+                if (!checkIfAlreadySaved)
+                {
+                    SaveProperty sp = new()
+                    {
+                        PropertyId = entity.PropertyId,
+                        SellerId = entity.SellerId,
+                        CreatedAt = DateTime.Now,
+                        CreatedBy = "Admin",
+                        Deleted = false,
+                        ModifiedAt = DateTime.Now,
+                        ModifiedBy = "Admin"
+                    };
+
+                    _context.SaveProperties.Add(sp);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ex=", ex.Message);
+                throw;
+            }
+        }
+        public int SavedPropertiesBySeller(Guid sellerId)
+        {
+            try
+            {
+                if (sellerId == Guid.Empty || string.IsNullOrEmpty(sellerId.ToString()))
+                {
+                    throw new Exception("SellerId is null");
+                }
+
+                var countProps = _context.SaveProperties
+                                         .Include(x=>x.Property)
+                                         .Where(x => x.SellerId == sellerId && x.Property.Deleted == false)
+                                         .Count();
+
+                return countProps;
             }
             catch (Exception ex)
             {

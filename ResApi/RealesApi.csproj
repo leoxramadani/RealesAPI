@@ -9,6 +9,7 @@
     <PackageReference Include="AutoMapper.Extensions" Version="2.1.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="IdentityServer4" Version="4.1.2" />
+    <PackageReference Include="Kinde.SDK" Version="1.2.11" />
     <PackageReference Include="Lib.Net.Http.WebPush" Version="3.2.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
@@ -48,6 +49,7 @@
     <None Remove="DTO\PurposeDTO\" />
     <None Remove="DTO\WhatsSpecialDTO\" />
     <None Remove="DTO\ConditionsDTO\" />
+    <None Remove="DTO\SavePropertyDTO\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Hubs\" />
@@ -60,5 +62,6 @@
     <Folder Include="DTO\PurposeDTO\" />
     <Folder Include="DTO\WhatsSpecialDTO\" />
     <Folder Include="DTO\ConditionsDTO\" />
+    <Folder Include="DTO\SavePropertyDTO\" />
   </ItemGroup>
 </Project>

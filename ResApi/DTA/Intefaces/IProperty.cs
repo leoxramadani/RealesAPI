@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using RealesApi.DTA.Intefaces.Shared;
 using RealesApi.DTO.Property;
+using RealesApi.DTO.SavePropertyDTO;
 using RealesApi.Models;
 
 namespace RealesApi.DTA.Intefaces
@@ -14,7 +15,11 @@ namespace RealesApi.DTA.Intefaces
         Task<PropertyDTO> GetPropertyById(Guid propId, CancellationToken cancellationToken);
         Task<PropertyDTO> CreateNewProperty(PropertyDTO entity);
         Task<PropertyDTO> SoftDeleteProperty(Guid propId, CancellationToken cancellationToken);
-
+        Task<List<PropertyDTO>> GetLatestThreeProperties(CancellationToken cancellationToken);
+        Task<bool> SaveProperty(SavePropertyDTO entity);
+        Task<List<PropertyDTO>> GetPropertyBySellerId(Guid sellerId, CancellationToken cancellationToken);
+        int GetPropCountForSeller(Guid sellerId);
+        int SavedPropertiesBySeller(Guid sellerId);
     }
 }
 

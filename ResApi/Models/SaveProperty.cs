@@ -3,7 +3,7 @@ using RealesApi.Models.Shared;
 
 namespace RealesApi.Models
 {
-	public class SaveProperty : BaseEntity
+	public partial class SaveProperty : BaseEntity
 	{
 		public SaveProperty()
 		{

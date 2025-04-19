@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using RealesApi.DataResponse;
 using RealesApi.DTA.Intefaces;
 using RealesApi.DTO.Property;
+using RealesApi.DTO.SavePropertyDTO;
 using RealesApi.Helpers.HashService;
 using RealesApi.Models;
 
@@ -50,7 +51,27 @@ namespace RealesApi.Controllers
                 return BadRequest(errRet);
             }
         }
+        [HttpGet]
+        [Route("GetLatestThreeProperties")]
+        public async Task<ActionResult<PropertyDTO>> GetLatestThreeProperties(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var response = await _prop.GetLatestThreeProperties(cancellationToken);
+                await _unitOfWork.Save(cancellationToken);
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't find any properties"
 
+                };
+                return BadRequest(errRet);
+            }
+        }
         [HttpGet]
         [Route("GetPropertyById")]
         public async Task<ActionResult<PropertyDTO>> GetPropertyById(Guid propId, CancellationToken cancellationToken)
@@ -71,7 +92,70 @@ namespace RealesApi.Controllers
                 };
                 return BadRequest(errRet);
             }
+        }
+        [HttpGet]
+        [Route("GetPropertyBySellerId")]
+        public async Task<ActionResult<PropertyDTO>> GetPropertyBySellerId(Guid sellerId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var property = await _prop.GetPropertyBySellerId(sellerId, cancellationToken);
+                await _unitOfWork.Save(cancellationToken);
+                return Ok(property);
+            }
+            catch (Exception ex)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't find your properties."
 
+                };
+                return BadRequest(errRet);
+            }
+        }
+
+        [HttpGet]
+        [Route("GetPropCountForSeller")]
+        public async Task<ActionResult<PropertyDTO>> GetPropCountForSeller(Guid sellerId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var property = _prop.GetPropCountForSeller(sellerId);
+                await _unitOfWork.Save(cancellationToken);
+                return Ok(property);
+            }
+            catch (Exception ex)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't find your properties."
+
+                };
+                return BadRequest(errRet);
+            }
+        }
+        [HttpGet]
+        [Route("GetSavedPropertiesBySeller")]
+        public async Task<ActionResult<PropertyDTO>> GetPropertySavedBySeller(Guid sellerId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var count = _prop.SavedPropertiesBySeller(sellerId);
+                await _unitOfWork.Save(cancellationToken);
+                return Ok(count);
+            }
+            catch (Exception ex)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't find your properties."
+
+                };
+                return BadRequest(errRet);
+            }
         }
 
         [HttpPost]
@@ -104,6 +188,27 @@ namespace RealesApi.Controllers
                 var property = await _prop.SoftDeleteProperty(propId, cancellationToken);
                 await _unitOfWork.Save(cancellationToken);
                 return Ok(property);
+            }
+            catch (Exception)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't delete your property."
+
+                };
+                return BadRequest(errRet);
+            }
+        }
+        [HttpPost]
+        [Route("SaveProperty")]
+        public async Task<ActionResult<bool>> SaveProperty(SavePropertyDTO entity,CancellationToken cancellationToken)
+        {
+            try
+            {
+                var saveProperty = await _prop.SaveProperty(entity);
+                await _unitOfWork.Save(cancellationToken);
+                return Ok(saveProperty);
             }
             catch (Exception)
             {
