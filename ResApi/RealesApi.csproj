@@ -50,6 +50,7 @@
     <None Remove="DTO\WhatsSpecialDTO\" />
     <None Remove="DTO\ConditionsDTO\" />
     <None Remove="DTO\SavePropertyDTO\" />
+    <None Remove="DTO\Kinde\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Hubs\" />
@@ -63,5 +64,6 @@
     <Folder Include="DTO\WhatsSpecialDTO\" />
     <Folder Include="DTO\ConditionsDTO\" />
     <Folder Include="DTO\SavePropertyDTO\" />
+    <Folder Include="DTO\Kinde\" />
   </ItemGroup>
 </Project>

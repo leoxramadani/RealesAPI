@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -52,12 +53,12 @@ namespace RealesApi.Controllers
             }
         }
         [HttpGet]
-        [Route("GetLatestThreeProperties")]
-        public async Task<ActionResult<PropertyDTO>> GetLatestThreeProperties(CancellationToken cancellationToken)
+        [Route("GetLatestTwoProperties")]
+        public async Task<ActionResult<PropertyDTO>> GetLatestTwoProperties(CancellationToken cancellationToken)
         {
             try
             {
-                var response = await _prop.GetLatestThreeProperties(cancellationToken);
+                var response = await _prop.GetLatestTwoProperties(cancellationToken);
                 await _unitOfWork.Save(cancellationToken);
                 return Ok(response);
             }
@@ -137,12 +138,12 @@ namespace RealesApi.Controllers
             }
         }
         [HttpGet]
-        [Route("GetSavedPropertiesBySeller")]
+        [Route("GetSavedPropertiesBySellerCount")]
         public async Task<ActionResult<PropertyDTO>> GetPropertySavedBySeller(Guid sellerId, CancellationToken cancellationToken)
         {
             try
             {
-                var count = _prop.SavedPropertiesBySeller(sellerId);
+                var count = _prop.SavedPropertiesBySellerCount(sellerId);
                 await _unitOfWork.Save(cancellationToken);
                 return Ok(count);
             }
@@ -155,6 +156,48 @@ namespace RealesApi.Controllers
 
                 };
                 return BadRequest(errRet);
+            }
+        }
+        [HttpGet]
+        [Route("GetPropertyForRentByUserId")]
+        public async Task<List<PropertyDTO>> GetPropertyForRentByUserId(Guid sellerId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var entity = await _prop.GetPropertyForRentByUserId(sellerId);
+                await _unitOfWork.Save(cancellationToken);
+                return entity;
+            }
+            catch (Exception)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't find your properties."
+
+                };
+                return null;
+            }
+        }
+        [HttpGet]
+        [Route("GetPropertyForSaleByUserId")]
+        public async Task<List<PropertyDTO>> GetPropertyForSaleByUserId(Guid sellerId,CancellationToken cancellationToken)
+        {
+            try
+            {
+                var entity = await _prop.GetPropertyForSaleByUserId(sellerId);
+                await _unitOfWork.Save(cancellationToken);
+                return entity;
+            }
+            catch (Exception)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't find your properties."
+
+                };
+                return null;
             }
         }
 
@@ -219,6 +262,27 @@ namespace RealesApi.Controllers
 
                 };
                 return BadRequest(errRet);
+            }
+        }
+        [HttpGet]
+        [Route("GetPropertiesSavedBySellerId")]
+        public async Task<List<PropertyDTO>> GetPropertiesSavedBySellerId(Guid sellerId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var savedProps = await _prop.GetPropertiesSavedBySellerId(sellerId, cancellationToken);
+                await _unitOfWork.Save(cancellationToken);
+                return savedProps;
+            }
+            catch (Exception)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't delete your property."
+
+                };
+                return null;
             }
         }
 

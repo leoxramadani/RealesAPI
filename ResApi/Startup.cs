@@ -41,7 +41,7 @@
                     options.UseSqlServer(Configuration.GetConnectionString("realestDb")));
 
                     services.AddAutoMapper(typeof(AutoMapperProfile));
-
+                    services.AddScoped<IUser, UserService>();
                     services.AddScoped<IUnitOfWork, UnitOfWork>();
                     services.AddScoped<IAuth, AuthService>();
                     services.AddScoped<IProperty, PropertyService>();
@@ -103,66 +103,66 @@
                 var key = Encoding.ASCII.GetBytes(Configuration["Jwt:Key"]);
                 JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
-                services.AddAuthentication(options =>
-                {
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(options =>
-                {
-                    // Critical: Get these values from configuration
-                    var kindeSettings = Configuration.GetSection("Kinde");
-                    var domain = kindeSettings["IssuerUrl"] ?? "https://realest.kinde.com";
-                    var audience = kindeSettings["ClientId"] ?? "8a0a26a46ccb476d8b32b8439a23bb50";
+                ////services.AddAuthentication(options =>
+                ////{
+                ////    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                ////    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                ////    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                ////})
+                ////.AddJwtBearer(options =>
+                ////{
+                ////    // Critical: Get these values from configuration
+                ////    var kindeSettings = Configuration.GetSection("Kinde");
+                ////    var domain = kindeSettings["IssuerUrl"] ?? "https://realest.kinde.com";
+                ////    var audience = kindeSettings["ClientId"] ?? "8a0a26a46ccb476d8b32b8439a23bb50";
 
-                    options.Authority = domain;
-                    options.RequireHttpsMetadata = domain.StartsWith("https://");
-                    options.SaveToken = true;
+                ////    options.Authority = domain;
+                ////    options.RequireHttpsMetadata = true;
+                ////    options.SaveToken = true;
 
-                    // Use the OIDC discovery document
-                    options.MetadataAddress = $"{domain}/.well-known/openid-configuration";
+                ////    // Use the OIDC discovery document
+                ////    options.MetadataAddress = $"{domain}/.well-known/openid-configuration";
 
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        // For debugging only
-                        ValidateIssuerSigningKey = true,
-                        ValidateIssuer = true,
-                        ValidIssuer = domain,
-                        ValidateAudience = true,
-                        ValidAudience = audience,
-                        ValidateLifetime = true,
-                        // Map standard JWT claims
-                        NameClaimType = "name",
-                        RoleClaimType = "role"
-                    };
+                ////    options.TokenValidationParameters = new TokenValidationParameters
+                ////    {
+                ////        // For debugging only
+                ////        ValidateIssuerSigningKey = true,
+                ////        ValidateIssuer = true,
+                ////        ValidIssuer = domain,
+                ////        ValidateAudience = true,
+                ////        ValidAudience = audience,
+                ////        ValidateLifetime = true,
+                ////        // Map standard JWT claims
+                ////        NameClaimType = "name",
+                ////        RoleClaimType = "role"
+                ////    };
 
-                    options.Events = new JwtBearerEvents
-                    {
-                        OnAuthenticationFailed = context =>
-                        {
-                            Console.WriteLine($"Auth failed: {context.Exception.Message}");
-                            return Task.CompletedTask;
-                        },
-                        OnChallenge = context =>
-                        {
-                            // This will run when authentication fails and a 401 is about to be returned
-                            Console.WriteLine("Challenge issued: Auth required");
-                            return Task.CompletedTask;
-                        },
-                        OnTokenValidated = context =>
-                        {
-                            Console.WriteLine("Token validated");
-                            return Task.CompletedTask;
-                        },
-                        OnMessageReceived = context =>
-                        {
-                            var token = context.Token;
-                            Console.WriteLine($"Auth message received{(token != null ? " with token" : " without token")}");
-                            return Task.CompletedTask;
-                        }
-                    };
-                });
+                //    options.Events = new JwtBearerEvents
+                //    {
+                //        OnAuthenticationFailed = context =>
+                //        {
+                //            Console.WriteLine($"Auth failed: {context.Exception.Message}");
+                //            return Task.CompletedTask;
+                //        },
+                //        OnChallenge = context =>
+                //        {
+                //            // This will run when authentication fails and a 401 is about to be returned
+                //            Console.WriteLine("Challenge issued: Auth required");
+                //            return Task.CompletedTask;
+                //        },
+                //        OnTokenValidated = context =>
+                //        {
+                //            Console.WriteLine("Token validated");
+                //            return Task.CompletedTask;
+                //        },
+                //        OnMessageReceived = context =>
+                //        {
+                //            var token = context.Token;
+                //            Console.WriteLine($"Auth message received{(token != null ? " with token" : " without token")}");
+                //            return Task.CompletedTask;
+                //        }
+                //    };
+                //});
 
 
             services.AddAuthorization();

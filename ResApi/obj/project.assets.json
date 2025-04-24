@@ -6290,8 +6290,6 @@
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
-        "System.Runtime.CompilerServices.Unsafe.6.0.0.nupkg.sha512",
-        "System.Runtime.CompilerServices.Unsafe.nuspec",
         "THIRD-PARTY-NOTICES.TXT",
         "buildTransitive/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.targets",
         "buildTransitive/netcoreapp3.1/_._",
@@ -6303,6 +6301,8 @@
         "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },

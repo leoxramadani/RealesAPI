@@ -7,7 +7,7 @@ using RealesApi.Models;
 namespace RealesApi.DTA.Services
 {
     public class AuthService : IAuth
-	{
+    {
         private readonly DataContext _context;
         public AuthService(DataContext context) 
         {

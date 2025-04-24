@@ -15,11 +15,14 @@ namespace RealesApi.DTA.Intefaces
         Task<PropertyDTO> GetPropertyById(Guid propId, CancellationToken cancellationToken);
         Task<PropertyDTO> CreateNewProperty(PropertyDTO entity);
         Task<PropertyDTO> SoftDeleteProperty(Guid propId, CancellationToken cancellationToken);
-        Task<List<PropertyDTO>> GetLatestThreeProperties(CancellationToken cancellationToken);
+        Task<List<PropertyDTO>> GetLatestTwoProperties(CancellationToken cancellationToken);
         Task<bool> SaveProperty(SavePropertyDTO entity);
         Task<List<PropertyDTO>> GetPropertyBySellerId(Guid sellerId, CancellationToken cancellationToken);
         int GetPropCountForSeller(Guid sellerId);
-        int SavedPropertiesBySeller(Guid sellerId);
+        int SavedPropertiesBySellerCount(Guid sellerId);
+        Task<List<PropertyDTO>> GetPropertyForRentByUserId(Guid sellerId);
+        Task<List<PropertyDTO>> GetPropertyForSaleByUserId(Guid sellerId);
+        Task<List<PropertyDTO>> GetPropertiesSavedBySellerId(Guid sellerId, CancellationToken cancellationToken);
     }
 }
 
