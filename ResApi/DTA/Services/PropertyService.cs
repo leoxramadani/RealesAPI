@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RealesApi.DTA.Intefaces;
 using RealesApi.DTA.Services.Shared;
+using RealesApi.DTO.Enums;
 using RealesApi.DTO.Property;
 using RealesApi.DTO.SavePropertyDTO;
 using RealesApi.DTO.WhatsSpecialDTO;
@@ -134,6 +135,7 @@ namespace RealesApi.DTA.Services
                                            .Include(x => x.Users)
                                            .Include(x => x.PropertyWhatsSpecialLinks)
                                            .Include(x => x.PropertyType)
+                                           .Include(x => x.Purpose)
                                            .Where(x => x.SellerId == sellerId && x.Deleted != true)
                                            .Select(x => _mapper.Map<PropertyDTO>(x))
                                            .ToListAsync(cancellationToken);
@@ -212,6 +214,65 @@ namespace RealesApi.DTA.Services
                                                          .Include(x => x.PropertyType)
                                                          .Include(x => x.Purpose)
                                                          .Where(x => x.Deleted != true && x.SellerId == sellerId && x.Purpose.Name == "Sale")
+                                                         .Select(x => new PropertyDTO
+                                                         {
+                                                             Id = x.Id,
+                                                             Name = x.Name,
+                                                             ReviewsRates = x.ReviewsRates ?? Guid.Empty,
+                                                             Views = x.Views ?? 0,
+                                                             DatePosted = x.DatePosted ?? DateTime.MinValue,
+                                                             Saves = x.Saves ?? 0,
+                                                             MainImage = x.MainImage,
+                                                             Price = x.Price,
+                                                             Rooms = x.Rooms ?? 0,
+                                                             Baths = x.Baths ?? 0,
+                                                             Size = x.Size ?? 0,
+                                                             BuiltIn = x.BuiltIn,
+                                                             AllDocuments = x.AllDocuments ?? false,
+                                                             MonthlyPayment = x.MonthlyPayment ?? false,
+                                                             ConditionName = x.Condition.Name,
+                                                             ConditionId = x.ConditionId,
+                                                             PropertyTypeId = x.PropertyTypeId,
+                                                             PropertyTypeName = x.PropertyType.Name,
+                                                             PurposeId = x.PurposeId,
+                                                             PurposeName = x.Purpose.Name,
+                                                             UserId = x.Users.Id,
+                                                             UserName = x.Users.Name,
+                                                             UserLastName = x.Users.LastName,
+                                                             UserEmail = x.Users.Email,
+                                                             UserPhone = x.Users.PhoneNumber,
+                                                             SellerId = x.SellerId,
+                                                             Description = x.Description,
+                                                             Location = x.Location,
+                                                             PriceRange = x.PriceRange,
+                                                             CreatedBy = x.CreatedBy,
+                                                             CreatedAt = (DateTime)x.CreatedAt,
+                                                             ModifiedBy = x.ModifiedBy,
+                                                             ModifiedAt = (DateTime)x.ModifiedAt,
+                                                             Deleted = x.Deleted,
+                                                         })
+                                                         .ToListAsync();
+                
+                if (properties == null)
+                    return null;
+
+                return properties;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ex=", ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<List<PropertyDTO>> GetPropertyByUserIdPending(Guid sellerId)
+        {
+            try
+            {
+                var properties = await _context.Properties.Include(x => x.Users)
+                                                         .Include(x => x.PropertyType)
+                                                         .Include(x => x.Purpose)
+                                                         .Where(x => x.Deleted != true && x.SellerId == sellerId && x.Status == (int)StatusEnum.Pending)
                                                          .Select(x => _mapper.Map<PropertyDTO>(x))
                                                          .ToListAsync();
                 if (properties == null)
@@ -225,6 +286,51 @@ namespace RealesApi.DTA.Services
                 throw;
             }
         }
+
+        public async Task<List<PropertyDTO>> GetPropertyByUserIdPublished(Guid sellerId)
+        {
+            try
+            {
+                var properties = await _context.Properties.Include(x => x.Users)
+                                                         .Include(x => x.PropertyType)
+                                                         .Include(x => x.Purpose)
+                                                         .Where(x => x.Deleted != true && x.SellerId == sellerId && x.Status == (int)StatusEnum.Published)
+                                                         .Select(x => _mapper.Map<PropertyDTO>(x))
+                                                         .ToListAsync();
+                if (properties == null)
+                    return null;
+
+                return properties;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ex=", ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<List<PropertyDTO>> GetPropertyByUserIdRejected(Guid sellerId)
+        {
+            try
+            {
+                var properties = await _context.Properties.Include(x => x.Users)
+                                                         .Include(x => x.PropertyType)
+                                                         .Include(x => x.Purpose)
+                                                         .Where(x => x.Deleted != true && x.SellerId == sellerId && x.Status == (int)StatusEnum.Rejected)
+                                                         .Select(x => _mapper.Map<PropertyDTO>(x))
+                                                         .ToListAsync();
+                if (properties == null)
+                    return null;
+
+                return properties;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ex=", ex.Message);
+                throw;
+            }
+        }
+
 
         public int GetPropCountForSeller(Guid sellerId)
         {
@@ -386,6 +492,7 @@ namespace RealesApi.DTA.Services
                     ModifiedAt = DateTime.Now,
                     ModifiedBy = "Admin",
                     DatePosted = DateTime.Now,
+                    Status = 0,
 
                     AllDocuments = entity.AllDocuments,
                     Baths = entity.Baths,

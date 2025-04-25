@@ -23,6 +23,9 @@ namespace RealesApi.DTA.Intefaces
         Task<List<PropertyDTO>> GetPropertyForRentByUserId(Guid sellerId);
         Task<List<PropertyDTO>> GetPropertyForSaleByUserId(Guid sellerId);
         Task<List<PropertyDTO>> GetPropertiesSavedBySellerId(Guid sellerId, CancellationToken cancellationToken);
+        Task<List<PropertyDTO>> GetPropertyByUserIdPending(Guid sellerId);
+        Task<List<PropertyDTO>> GetPropertyByUserIdPublished(Guid sellerId);
+        Task<List<PropertyDTO>> GetPropertyByUserIdRejected(Guid sellerId);
     }
 }
 

@@ -39,6 +39,7 @@ namespace RealesApi.DTO.Property
         public string PurposeName{ get; set; }
         public Guid PurposeId { get; set; }
         public string PriceRange { get; set; }
+        public int Status { get; set; }
 
         public List<WhatsSpecialLinkDTO> WhatsSpecialNames { get; set; }
 

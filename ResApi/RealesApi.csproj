@@ -51,6 +51,7 @@
     <None Remove="DTO\ConditionsDTO\" />
     <None Remove="DTO\SavePropertyDTO\" />
     <None Remove="DTO\Kinde\" />
+    <None Remove="DTO\Enums\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Hubs\" />
@@ -65,5 +66,6 @@
     <Folder Include="DTO\ConditionsDTO\" />
     <Folder Include="DTO\SavePropertyDTO\" />
     <Folder Include="DTO\Kinde\" />
+    <Folder Include="DTO\Enums\" />
   </ItemGroup>
 </Project>

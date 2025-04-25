@@ -285,6 +285,71 @@ namespace RealesApi.Controllers
                 return null;
             }
         }
+        [HttpGet]
+        [Route("GetPropertyByUserIdPending")]
+        public async Task<List<PropertyDTO>> GetPropertyByUserIdPending(Guid sellerId,CancellationToken cancellationToken)
+        {
+            try
+            {
+                var savedProps = await _prop.GetPropertyByUserIdPending(sellerId);
+                await _unitOfWork.Save(cancellationToken);
+                return savedProps;
+            }
+            catch (Exception)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't delete your property."
+
+                };
+                return null;
+            }
+        }
+
+        [HttpGet]
+        [Route("GetPropertyByUserIdPublished")]
+        public async Task<List<PropertyDTO>> GetPropertyByUserIdPublished(Guid sellerId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var savedProps = await _prop.GetPropertyByUserIdPublished(sellerId);
+                await _unitOfWork.Save(cancellationToken);
+                return savedProps;
+            }
+            catch (Exception)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't delete your property."
+
+                };
+                return null;
+            }
+        }
+
+        [HttpGet]
+        [Route("GetPropertyByUserIdRejected")]
+        public async Task<List<PropertyDTO>> GetPropertyByUserIdRejected(Guid sellerId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var savedProps = await _prop.GetPropertyByUserIdRejected(sellerId);
+                await _unitOfWork.Save(cancellationToken);
+                return savedProps;
+            }
+            catch (Exception)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't delete your property."
+
+                };
+                return null;
+            }
+        }
 
     }
 }
