@@ -350,6 +350,26 @@ namespace RealesApi.Controllers
                 return null;
             }
         }
+        [HttpPost]
+        [Route("SearchProperties")]
+        public async Task<ActionResult<List<PropertyDTO>>> SearchProperties([FromBody] PropertySearchDTO searchDto, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var results = await _prop.SearchProperties(searchDto, cancellationToken);
+                return Ok(results);
+            }
+            catch (Exception)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Error occurred while searching for properties"
+                };
+                return BadRequest(errRet);
+            }
+        }
+
 
     }
 }

@@ -36,6 +36,8 @@ namespace RealesApi.Models
         public Guid PurposeId { get; set; }
         public string PriceRange { get; set; }
         public int Status { get; set; }
+        public int Floors { get; set; }
+        public int RentFrame { get; set; }
 
         public virtual Condition Condition { get; set; }
         public virtual PropertyType PropertyType { get; set; }

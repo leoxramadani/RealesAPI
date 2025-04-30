@@ -46,6 +46,8 @@ namespace RealesApi.Extentions
 
             CreateMap<PropertyDTO, SaveProperty>().ReverseMap();
 
+            CreateMap<PropertyDTO, Property>().ReverseMap();
+
         }
     }
 }

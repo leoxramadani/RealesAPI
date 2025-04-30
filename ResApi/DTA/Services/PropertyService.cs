@@ -250,6 +250,8 @@ namespace RealesApi.DTA.Services
                                                              ModifiedBy = x.ModifiedBy,
                                                              ModifiedAt = (DateTime)x.ModifiedAt,
                                                              Deleted = x.Deleted,
+                                                             RentFrame = x.RentFrame,
+                                                             Floors = x.Floors
                                                          })
                                                          .ToListAsync();
                 
@@ -465,8 +467,10 @@ namespace RealesApi.DTA.Services
                                                     ModifiedBy = x.Property.ModifiedBy,
                                                     ModifiedAt = (DateTime)x.Property.ModifiedAt,
                                                     Deleted = x.Property.Deleted,
-                                                    })
-                                                    .ToListAsync(cancellationToken);
+                                                    RentFrame = x.Property.RentFrame,
+                                                    Floors = x.Property.Floors
+                                                 })
+                                                 .ToListAsync(cancellationToken);
                 return savedProps;
             }
             catch (Exception ex)
@@ -513,6 +517,8 @@ namespace RealesApi.DTA.Services
                     Size = entity.Saves,
                     SellerId = entity.SellerId,
                     Views = entity.Views,
+                    RentFrame = entity.RentFrame,
+                    Floors = entity.Floors,
                 };
 
                 _context.Properties.Add(prop);
@@ -570,6 +576,60 @@ namespace RealesApi.DTA.Services
                 throw;
             }
         }
+
+        public async Task<List<PropertyDTO>> SearchProperties(PropertySearchDTO search, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var query = _context.Properties
+                                    .Include(x => x.PropertyOtherImages)
+                                    .Include(x => x.Condition)
+                                    .Include(x => x.PropertyType)
+                                    .Include(x => x.Purpose)
+                                    .Where(x => !x.Deleted)
+                                    .AsQueryable();
+
+                if (!string.IsNullOrEmpty(search.Name))
+                    query = query.Where(p => p.Name.Contains(search.Name));
+
+                if (!string.IsNullOrEmpty(search.Location))
+                    query = query.Where(p => p.Location.Contains(search.Location));
+
+                if (search.MinSize.HasValue)
+                    query = query.Where(p => p.Size >= search.MinSize.Value);
+
+                if (search.Floors.HasValue)
+                    query = query.Where(p => p.Floors >= search.Floors.Value);
+
+                if (search.RentFrame.HasValue)
+                    query = query.Where(p => p.RentFrame == search.RentFrame.Value);
+
+                if (search.MaxSize.HasValue)
+                    query = query.Where(p => p.Size <= search.MaxSize.Value);
+
+                if (!string.IsNullOrEmpty(search.PropertyTypeName))
+                    query = query.Where(p => p.PropertyType.Name.Contains(search.PropertyTypeName));
+
+                if (search.MinPrice.HasValue)
+                    query = query.Where(p => p.Price >= search.MinPrice.Value);
+
+                if (search.MaxPrice.HasValue)
+                    query = query.Where(p => p.Price <= search.MaxPrice.Value);
+
+                var result = await query
+                    .OrderByDescending(p => p.DatePosted)
+                    .Select(p => _mapper.Map<PropertyDTO>(p))
+                    .ToListAsync(cancellationToken);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<PropertyDTO>();
+            }
+        }
+
 
     }
 }
