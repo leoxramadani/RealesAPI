@@ -40,13 +40,13 @@ namespace RealesApi.Controllers
                 await _unitOfWork.Save(cancellationToken);
                 return Ok(response);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //_logger.Error(e, "Register POST request");
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't find any properties"
+                    ErrorMessage = ex.Message
 
                 };
                 return BadRequest(errRet);
@@ -62,12 +62,12 @@ namespace RealesApi.Controllers
                 await _unitOfWork.Save(cancellationToken);
                 return Ok(response);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't find any properties"
+                    ErrorMessage = ex.Message
 
                 };
                 return BadRequest(errRet);
@@ -88,7 +88,7 @@ namespace RealesApi.Controllers
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't find your property."
+                    ErrorMessage = ex.Message
 
                 };
                 return BadRequest(errRet);
@@ -109,7 +109,7 @@ namespace RealesApi.Controllers
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't find your properties."
+                    ErrorMessage = ex.Message
 
                 };
                 return BadRequest(errRet);
@@ -131,7 +131,7 @@ namespace RealesApi.Controllers
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't find your properties."
+                    ErrorMessage = ex.Message
 
                 };
                 return BadRequest(errRet);
@@ -152,7 +152,7 @@ namespace RealesApi.Controllers
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't find your properties."
+                    ErrorMessage = ex.Message,
 
                 };
                 return BadRequest(errRet);
@@ -160,7 +160,7 @@ namespace RealesApi.Controllers
         }
         [HttpGet]
         [Route("GetPropertyForRentByUserId")]
-        public async Task<List<PropertyDTO>> GetPropertyForRentByUserId(Guid sellerId, CancellationToken cancellationToken)
+        public async Task<ActionResult<List<PropertyDTO>>> GetPropertyForRentByUserId(Guid sellerId, CancellationToken cancellationToken)
         {
             try
             {
@@ -168,36 +168,36 @@ namespace RealesApi.Controllers
                 await _unitOfWork.Save(cancellationToken);
                 return entity;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't find your properties."
+                    ErrorMessage = ex.Message
 
                 };
-                return null;
+                return BadRequest(errRet);
             }
         }
         [HttpGet]
         [Route("GetPropertyForSaleByUserId")]
-        public async Task<List<PropertyDTO>> GetPropertyForSaleByUserId(Guid sellerId,CancellationToken cancellationToken)
+        public async Task<ActionResult<List<PropertyDTO>>> GetPropertyForSaleByUserId(Guid sellerId,CancellationToken cancellationToken)
         {
             try
             {
                 var entity = await _prop.GetPropertyForSaleByUserId(sellerId);
                 await _unitOfWork.Save(cancellationToken);
-                return entity;
+                return Ok(entity);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't find your properties."
+                    ErrorMessage = ex.Message
 
                 };
-                return null;
+                return BadRequest(errRet);
             }
         }
 
@@ -211,12 +211,12 @@ namespace RealesApi.Controllers
                 await _unitOfWork.Save(cancellationToken);
                 return Ok(property);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't create new property."
+                    ErrorMessage = ex.Message,
 
                 };
                 return BadRequest(errRet);
@@ -232,12 +232,12 @@ namespace RealesApi.Controllers
                 await _unitOfWork.Save(cancellationToken);
                 return Ok(property);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't delete your property."
+                    ErrorMessage = ex.Message
 
                 };
                 return BadRequest(errRet);
@@ -253,12 +253,12 @@ namespace RealesApi.Controllers
                 await _unitOfWork.Save(cancellationToken);
                 return Ok(saveProperty);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't delete your property."
+                    ErrorMessage = ex.Message
 
                 };
                 return BadRequest(errRet);
@@ -266,88 +266,88 @@ namespace RealesApi.Controllers
         }
         [HttpGet]
         [Route("GetPropertiesSavedBySellerId")]
-        public async Task<List<PropertyDTO>> GetPropertiesSavedBySellerId(Guid sellerId, CancellationToken cancellationToken)
+        public async Task<ActionResult<List<PropertyDTO>>> GetPropertiesSavedBySellerId(Guid sellerId, CancellationToken cancellationToken)
         {
             try
             {
                 var savedProps = await _prop.GetPropertiesSavedBySellerId(sellerId, cancellationToken);
                 await _unitOfWork.Save(cancellationToken);
-                return savedProps;
+                return Ok(savedProps);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't delete your property."
+                    ErrorMessage = ex.Message
 
                 };
-                return null;
+                return BadRequest(errRet);
             }
         }
         [HttpGet]
         [Route("GetPropertyByUserIdPending")]
-        public async Task<List<PropertyDTO>> GetPropertyByUserIdPending(Guid sellerId,CancellationToken cancellationToken)
+        public async Task<ActionResult<List<PropertyDTO>>> GetPropertyByUserIdPending(Guid sellerId,CancellationToken cancellationToken)
         {
             try
             {
                 var savedProps = await _prop.GetPropertyByUserIdPending(sellerId);
                 await _unitOfWork.Save(cancellationToken);
-                return savedProps;
+                return Ok(savedProps);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't delete your property."
+                    ErrorMessage = ex.Message
 
                 };
-                return null;
+                return BadRequest(errRet);
             }
         }
 
         [HttpGet]
         [Route("GetPropertyByUserIdPublished")]
-        public async Task<List<PropertyDTO>> GetPropertyByUserIdPublished(Guid sellerId, CancellationToken cancellationToken)
+        public async Task<ActionResult<List<PropertyDTO>>> GetPropertyByUserIdPublished(Guid sellerId, CancellationToken cancellationToken)
         {
             try
             {
                 var savedProps = await _prop.GetPropertyByUserIdPublished(sellerId);
                 await _unitOfWork.Save(cancellationToken);
-                return savedProps;
+                return Ok(savedProps);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't delete your property."
+                    ErrorMessage = ex.Message
 
                 };
-                return null;
+                return BadRequest(errRet);
             }
         }
 
         [HttpGet]
         [Route("GetPropertyByUserIdRejected")]
-        public async Task<List<PropertyDTO>> GetPropertyByUserIdRejected(Guid sellerId, CancellationToken cancellationToken)
+        public async Task<ActionResult<List<PropertyDTO>>> GetPropertyByUserIdRejected(Guid sellerId, CancellationToken cancellationToken)
         {
             try
             {
                 var savedProps = await _prop.GetPropertyByUserIdRejected(sellerId);
                 await _unitOfWork.Save(cancellationToken);
-                return savedProps;
+                return Ok(savedProps);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't delete your property."
+                    ErrorMessage = ex.Message
 
                 };
-                return null;
+                return BadRequest(errRet);
             }
         }
         [HttpPost]
@@ -359,12 +359,12 @@ namespace RealesApi.Controllers
                 var results = await _prop.SearchProperties(searchDto, cancellationToken);
                 return Ok(results);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Error occurred while searching for properties"
+                    ErrorMessage = ex.Message
                 };
                 return BadRequest(errRet);
             }
