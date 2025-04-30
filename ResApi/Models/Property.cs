@@ -14,7 +14,7 @@ namespace RealesApi.Models
             PropertyWhatsSpecialLinks = new HashSet<PropertyWhatsSpecialLink>();
             SaveProperty = new HashSet<SaveProperty>();
         }
-
+        //asd
         public string Name { get; set; }
         public Guid? ReviewsRates { get; set; }
         public int? Views { get; set; }
