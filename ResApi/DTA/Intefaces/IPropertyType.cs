@@ -9,6 +9,7 @@ namespace RealesApi.DTA.Intefaces
 	public interface IPropertyType
 	{
 		Task<List<PropertyTypeDTO>> GetAllProperties(CancellationToken cancellationToken);
-	}
+		Task<string> GetPropertyTypeById(Guid propTypeId, CancellationToken cancellationToken);
+    }
 }
 

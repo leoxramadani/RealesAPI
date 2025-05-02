@@ -45,13 +45,33 @@ namespace RealesApi.Controllers
                 var errRet = new DataResponse<bool>
                 {
                     Succeeded = false,
-                    ErrorMessage = "Couldn't find any properties"
+                    ErrorMessage = "Couldn't find any property types."
 
                 };
                 return BadRequest(errRet);
             }
         }
+        [HttpGet]
+        [Route("GetPropertyTypeById")]
+        public async Task<ActionResult<string>> GetPropertyTypeById(Guid propTypeId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var response = await _propType.GetPropertyTypeById(propTypeId, cancellationToken);
+                await _unitOfWork.Save(cancellationToken);
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = "Couldn't find property type name with the given property type id."
 
+                };
+                return BadRequest(errRet);
+            }
+        }
     }
 }
 

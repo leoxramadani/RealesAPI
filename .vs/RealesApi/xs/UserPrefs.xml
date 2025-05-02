@@ -1,14 +1,15 @@
 ﻿<Properties StartupConfiguration="{CF3C8B4C-7B71-4D41-B0E7-62F7D323FCEF}|Default" GitUserInfo="UsingGIT">
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ResApi/Controllers/PropertyController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument=".gitignore">
     <Files>
       <File FileName="ResApi/DTA/Services/PropertyService.cs" Line="583" Column="1" />
-      <File FileName="ResApi/Controllers/PropertyController.cs" Line="372" Column="1" />
-      <File FileName="ResApi/Extentions/AutoMapperProfile.cs" Line="49" Column="61" />
-      <File FileName="ResApi/appsettings.json" Line="10" Column="38" />
-      <File FileName="ResApi/Models/Property.cs" Line="41" Column="1" />
-      <File FileName="ResApi/DTO/Enums/StatusEnum.cs" Line="4" Column="24" />
-      <File FileName="ResApi/DTO/Property/PropertySearchDTO.cs" Line="4" Column="22" />
+      <File FileName="ResApi/Controllers/PropertyController.cs" Line="17" Column="2" />
+      <File FileName="ResApi/Extentions/AutoMapperProfile.cs" />
+      <File FileName="ResApi/appsettings.json" />
+      <File FileName="ResApi/Models/Property.cs" Line="17" Column="14" />
+      <File FileName="ResApi/DTO/Enums/StatusEnum.cs" />
+      <File FileName="ResApi/DTO/Property/PropertySearchDTO.cs" />
+      <File FileName=".gitignore" Line="42" Column="17" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,10 +22,6 @@
                 <Node name="Intefaces" expanded="True" />
                 <Node name="Services" expanded="True" />
               </Node>
-              <Node name="DTO" expanded="True">
-                <Node name="Enums" expanded="True" />
-                <Node name="Property" expanded="True" />
-              </Node>
               <Node name="Models" expanded="True" />
             </Node>
           </Node>
@@ -35,8 +32,10 @@
   <MonoDevelop.Ide.ItemProperties.RealesApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <Breakpoint file="/Users/leoramadani/Documents/reealestApi/ResApi/DTA/Services/UserService.cs" relfile="ResApi/DTA/Services/UserService.cs" line="24" column="1" />
-    <Breakpoint file="/Users/leoramadani/Documents/reealestApi/ResApi/Controllers/UserController.cs" relfile="ResApi/Controllers/UserController.cs" line="28" column="1" />
+    <BreakpointStore>
+      <Breakpoint file="/Users/leoramadani/Documents/reealestApi/ResApi/DTA/Services/UserService.cs" relfile="ResApi/DTA/Services/UserService.cs" line="24" column="1" />
+      <Breakpoint file="/Users/leoramadani/Documents/reealestApi/ResApi/Controllers/UserController.cs" relfile="ResApi/Controllers/UserController.cs" line="28" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

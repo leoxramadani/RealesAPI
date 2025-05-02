@@ -45,6 +45,19 @@ namespace RealesApi.DTA.Services
             return null;
 
         }
+        public async Task<string> GetPropertyTypeById(Guid propTypeId,CancellationToken cancellationToken)
+        {
+            try
+            {
+                var propTypeName = await _context.PropertyTypes.Where(x => x.Id == propTypeId).Select(x => x.Name).FirstAsync(cancellationToken);
+                return propTypeName;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
     }
 }
 
