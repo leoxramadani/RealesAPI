@@ -12,6 +12,7 @@ using Kinde.Api.Models.Configuration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using RealesApi.DTA.Intefaces;
 using RealesApi.DTO.LoginDTO;
@@ -28,11 +29,13 @@ namespace RealesApi.Controllers
     {
         private readonly IConfiguration _config;
         private readonly IAuth _auth;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IConfiguration config,IAuth auth)
+        public AuthController(IConfiguration config,IAuth auth, ILogger<AuthController> logger)
         {
             _config = config;
             _auth = auth;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -61,17 +64,38 @@ namespace RealesApi.Controllers
         [Authorize]
         public IActionResult GetUserInfo()
         {
-            // Get the current user from the claims
-            var user = new
+            try
             {
-                Id = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? User.FindFirstValue("sub"),
-                Email = User.FindFirstValue(ClaimTypes.Email),
-                GivenName = User.FindFirstValue(ClaimTypes.GivenName),
-                FamilyName = User.FindFirstValue(ClaimTypes.Surname),
-                // You can add more claims as needed
-            };
+                // Log all claims for debugging
+                Console.WriteLine("Claims present: {ClaimCount}", User.Claims.Count());
+                foreach (var claim in User.Claims)
+                {
+                    Console.WriteLine("Claim: {Type} = {Value}", claim.Type, claim.Value);
+                }
 
-            return Ok(user);
+                // Get the current user from the claims - handle different claim types
+                var user = new
+                {
+                    Id = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                        ?? User.FindFirstValue("sub")
+                        ?? User.FindFirstValue("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"),
+                    Email = User.FindFirstValue(ClaimTypes.Email)
+                        ?? User.FindFirstValue("email"),
+                    GivenName = User.FindFirstValue(ClaimTypes.GivenName)
+                        ?? User.FindFirstValue("given_name"),
+                    FamilyName = User.FindFirstValue(ClaimTypes.Surname)
+                        ?? User.FindFirstValue("family_name"),
+                    Name = User.FindFirstValue(ClaimTypes.Name)
+                        ?? User.FindFirstValue("name")
+                };
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error retrieving user info",ex);
+                return StatusCode(500, "An error occurred while retrieving user information");
+            }
         }
         [HttpGet("claims")]
         [Authorize]
@@ -223,6 +247,51 @@ namespace RealesApi.Controllers
             //    claims.AddClaim(new Claim(ClaimTypes.Role, role));
 
             return claims;
+        }
+
+
+        [HttpGet("token-info")]
+        [Authorize]
+        public IActionResult GetTokenInfo()
+        {
+            try
+            {
+                var authHeader = HttpContext.Request.Headers["Authorization"].ToString();
+                _logger.LogInformation("Auth header: {AuthHeader}",
+                    authHeader.Length > 20 ? $"{authHeader.Substring(0, 20)}..." : authHeader);
+
+                if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
+                {
+                    return BadRequest("No valid authorization header found");
+                }
+
+                var token = authHeader.Substring("Bearer ".Length);
+                var handler = new JwtSecurityTokenHandler();
+
+                if (!handler.CanReadToken(token))
+                {
+                    return BadRequest("Invalid token format");
+                }
+
+                var jwtToken = handler.ReadJwtToken(token);
+
+                // Log and extract info without validation
+                var claims = jwtToken.Claims.Select(c => new { c.Type, c.Value }).ToList();
+
+                return Ok(new
+                {
+                    Issuer = jwtToken.Issuer,
+                    ValidFrom = jwtToken.ValidFrom,
+                    ValidTo = jwtToken.ValidTo,
+                    Claims = claims,
+                    HeaderData = jwtToken.Header.ToDictionary(h => h.Key, h => h.Value?.ToString())
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error parsing token");
+                return StatusCode(500, $"Error: {ex.Message}");
+            }
         }
     }
 }

@@ -20,8 +20,9 @@
     using System.IdentityModel.Tokens.Jwt;
     using System;
     using System.Security.Claims;
+using System.Net.Http;
 
-    namespace RealesApi
+namespace RealesApi
     {
         public class Startup
         {
@@ -100,69 +101,85 @@
                 services.AddHttpContextAccessor();
 
 
-                var key = Encoding.ASCII.GetBytes(Configuration["Jwt:Key"]);
-                JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+            var key = Encoding.ASCII.GetBytes(Configuration["Jwt:Key"]);
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
-                ////services.AddAuthentication(options =>
-                ////{
-                ////    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                ////    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                ////    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                ////})
-                ////.AddJwtBearer(options =>
-                ////{
-                ////    // Critical: Get these values from configuration
-                ////    var kindeSettings = Configuration.GetSection("Kinde");
-                ////    var domain = kindeSettings["IssuerUrl"] ?? "https://realest.kinde.com";
-                ////    var audience = kindeSettings["ClientId"] ?? "8a0a26a46ccb476d8b32b8439a23bb50";
 
-                ////    options.Authority = domain;
-                ////    options.RequireHttpsMetadata = true;
-                ////    options.SaveToken = true;
+            Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-                ////    // Use the OIDC discovery document
-                ////    options.MetadataAddress = $"{domain}/.well-known/openid-configuration";
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                // Get these values from configuration
+                var kindeSettings = Configuration.GetSection("Kinde");
+                var domain = kindeSettings["IssuerUrl"];
+                var audience = kindeSettings["ClientId"];
 
-                ////    options.TokenValidationParameters = new TokenValidationParameters
-                ////    {
-                ////        // For debugging only
-                ////        ValidateIssuerSigningKey = true,
-                ////        ValidateIssuer = true,
-                ////        ValidIssuer = domain,
-                ////        ValidateAudience = true,
-                ////        ValidAudience = audience,
-                ////        ValidateLifetime = true,
-                ////        // Map standard JWT claims
-                ////        NameClaimType = "name",
-                ////        RoleClaimType = "role"
-                ////    };
+                Console.WriteLine($"Using Issuer: {domain}");
+                Console.WriteLine($"Using Audience: {audience}");
 
-                //    options.Events = new JwtBearerEvents
-                //    {
-                //        OnAuthenticationFailed = context =>
-                //        {
-                //            Console.WriteLine($"Auth failed: {context.Exception.Message}");
-                //            return Task.CompletedTask;
-                //        },
-                //        OnChallenge = context =>
-                //        {
-                //            // This will run when authentication fails and a 401 is about to be returned
-                //            Console.WriteLine("Challenge issued: Auth required");
-                //            return Task.CompletedTask;
-                //        },
-                //        OnTokenValidated = context =>
-                //        {
-                //            Console.WriteLine("Token validated");
-                //            return Task.CompletedTask;
-                //        },
-                //        OnMessageReceived = context =>
-                //        {
-                //            var token = context.Token;
-                //            Console.WriteLine($"Auth message received{(token != null ? " with token" : " without token")}");
-                //            return Task.CompletedTask;
-                //        }
-                //    };
-                //});
+                // Critical: For local development in .NET 6, this can be the issue
+                options.BackchannelHttpHandler = new HttpClientHandler
+                {
+                    ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+                };
+
+                // Try without Authority and MetadataAddress first
+                // options.Authority = domain;
+                // options.MetadataAddress = $"{domain}/.well-known/openid-configuration";
+
+                options.RequireHttpsMetadata = false; // For development
+                options.SaveToken = true;
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = false, // Start with this off for testing
+                    ValidateIssuer = true,
+                    ValidIssuer = domain,
+                    ValidateAudience = true,
+                    ValidAudience = audience,
+                    ValidateLifetime = true,
+                    NameClaimType = "name",
+                    RoleClaimType = "role",
+                    // Skip signature validation temporarily for testing
+                    SignatureValidator = (token, parameters) => new JwtSecurityToken(token)
+                };
+
+                options.Events = new JwtBearerEvents
+                {
+                    OnAuthenticationFailed = context =>
+                    {
+                        Console.WriteLine($"Auth failed: {context.Exception.Message}");
+                        if (context.Exception.InnerException != null)
+                        {
+                            Console.WriteLine($"Inner exception: {context.Exception.InnerException.Message}");
+                        }
+                        return Task.CompletedTask;
+                    },
+                    OnChallenge = context =>
+                    {
+                        Console.WriteLine("Challenge issued: Auth required");
+                        return Task.CompletedTask;
+                    },
+                    OnTokenValidated = context =>
+                    {
+                        Console.WriteLine("Token validated successfully");
+                        return Task.CompletedTask;
+                    },
+                    OnMessageReceived = context =>
+                    {
+                        var token = context.Token;
+                        Console.WriteLine($"Auth message received{(token != null ? " with token" : " without token")}");
+                        return Task.CompletedTask;
+                    }
+                };
+            });
 
 
             services.AddAuthorization();
@@ -173,7 +190,21 @@
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
             {
-                if (env.IsDevelopment())
+            var builder = WebApplication.CreateBuilder();
+            var startup = new Startup(builder.Configuration);
+            startup.ConfigureServices(builder.Services);
+
+            // Additional logging setup
+            builder.Services.AddLogging(logging =>
+            {
+                logging.ClearProviders();
+                logging.AddConsole();
+                logging.AddDebug();
+                logging.SetMinimumLevel(LogLevel.Debug); // Set to Debug for detailed logs
+            });
+
+
+            if (env.IsDevelopment())
                 {
                     app.UseDeveloperExceptionPage();
                     app.UseSwagger();

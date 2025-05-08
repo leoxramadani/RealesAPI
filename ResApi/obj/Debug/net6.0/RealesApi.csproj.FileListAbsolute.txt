@@ -104,3 +104,4 @@
 /Users/leoramadani/Documents/reealestApi/ResApi/obj/Debug/net6.0/RealesApi.pdb
 /Users/leoramadani/Documents/reealestApi/ResApi/obj/Debug/net6.0/RealesApi.genruntimeconfig.cache
 /Users/leoramadani/Documents/reealestApi/ResApi/obj/Debug/net6.0/ref/RealesApi.dll
+/Users/leoramadani/Documents/reealestApi/ResApi/bin/Debug/net6.0/Microsoft.Bcl.TimeProvider.dll
