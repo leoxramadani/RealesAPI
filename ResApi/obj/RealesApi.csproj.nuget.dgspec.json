@@ -1,30 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "/Users/leoramadani/Documents/reealestApi/ResApi/RealesApi.csproj": {}
+    "C:\\Users\\LjeotrimRamadani\\Documents\\personal\\RealesAPI\\ResApi\\RealesApi.csproj": {}
   },
   "projects": {
-    "/Users/leoramadani/Documents/reealestApi/ResApi/RealesApi.csproj": {
+    "C:\\Users\\LjeotrimRamadani\\Documents\\personal\\RealesAPI\\ResApi\\RealesApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/leoramadani/Documents/reealestApi/ResApi/RealesApi.csproj",
+        "projectUniqueName": "C:\\Users\\LjeotrimRamadani\\Documents\\personal\\RealesAPI\\ResApi\\RealesApi.csproj",
         "projectName": "RealesApi",
-        "projectPath": "/Users/leoramadani/Documents/reealestApi/ResApi/RealesApi.csproj",
-        "packagesPath": "/Users/leoramadani/.nuget/packages/",
-        "outputPath": "/Users/leoramadani/Documents/reealestApi/ResApi/obj/",
+        "projectPath": "C:\\Users\\LjeotrimRamadani\\Documents\\personal\\RealesAPI\\ResApi\\RealesApi.csproj",
+        "packagesPath": "C:\\Users\\LjeotrimRamadani\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LjeotrimRamadani\\Documents\\personal\\RealesAPI\\ResApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/leoramadani/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\LjeotrimRamadani\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -37,11 +43,12 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
@@ -135,20 +142,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.osx-arm64",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -157,7 +150,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.408/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
