@@ -514,7 +514,7 @@ namespace RealesApi.DTA.Services
                     ReviewsRates = entity.ReviewsRates,
                     Rooms = entity.Rooms,
                     Saves = entity.Saves,
-                    Size = entity.Saves,
+                    Size = entity.Size,
                     SellerId = entity.SellerId,
                     Views = entity.Views,
                     RentFrame = entity.RentFrame,
@@ -588,6 +588,58 @@ namespace RealesApi.DTA.Services
                                     .Include(x => x.Purpose)
                                     .Where(x => !x.Deleted)
                                     .AsQueryable();
+
+                if (!string.IsNullOrEmpty(search.Name))
+                    query = query.Where(p => p.Name.Contains(search.Name));
+
+                if (!string.IsNullOrEmpty(search.Location))
+                    query = query.Where(p => p.Location.Contains(search.Location));
+
+                if (search.MinSize.HasValue)
+                    query = query.Where(p => p.Size >= search.MinSize.Value);
+
+                if (search.Floors.HasValue)
+                    query = query.Where(p => p.Floors >= search.Floors.Value);
+
+                if (search.RentFrame.HasValue)
+                    query = query.Where(p => p.RentFrame == search.RentFrame.Value);
+
+                if (search.MaxSize.HasValue)
+                    query = query.Where(p => p.Size <= search.MaxSize.Value);
+
+                if (!string.IsNullOrEmpty(search.PropertyTypeName))
+                    query = query.Where(p => p.PropertyType.Name.Contains(search.PropertyTypeName));
+
+                if (search.MinPrice.HasValue)
+                    query = query.Where(p => p.Price >= search.MinPrice.Value);
+
+                if (search.MaxPrice.HasValue)
+                    query = query.Where(p => p.Price <= search.MaxPrice.Value);
+
+                var result = await query
+                    .OrderByDescending(p => p.DatePosted)
+                    .Select(p => _mapper.Map<PropertyDTO>(p))
+                    .ToListAsync(cancellationToken);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<PropertyDTO>();
+            }
+        }
+        public async Task<List<PropertyDTO>> SearchPropertiesGetFiveRows(PropertySearchDTO search, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var query = _context.Properties
+                                    .Include(x => x.PropertyOtherImages)
+                                    .Include(x => x.Condition)
+                                    .Include(x => x.PropertyType)
+                                    .Include(x => x.Purpose)
+                                    .Where(x => !x.Deleted)
+                                    .AsQueryable().Take(5);
 
                 if (!string.IsNullOrEmpty(search.Name))
                     query = query.Where(p => p.Name.Contains(search.Name));

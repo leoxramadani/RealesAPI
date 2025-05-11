@@ -103,9 +103,13 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
+            "Microsoft.IdentityModel.Protocols.OpenIdConnect": {
+              "target": "Package",
+              "version": "[6.30.2, )"
+            },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
-              "version": "[8.0.3-preview.3, )"
+              "version": "[6.30.2, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RealesApi.DataResponse;
@@ -32,6 +33,7 @@ namespace RealesApi.Controllers
         }
         [HttpGet]
         [Route("GetAllProperties")]
+        [Authorize]
         public async Task<ActionResult<PropertyDTO>> GetAllProperties(CancellationToken cancellationToken)
         {
             try
@@ -357,6 +359,25 @@ namespace RealesApi.Controllers
             try
             {
                 var results = await _prop.SearchProperties(searchDto, cancellationToken);
+                return Ok(results);
+            }
+            catch (Exception ex)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = ex.Message
+                };
+                return BadRequest(errRet);
+            }
+        }
+        [HttpPost]
+        [Route("SearchPropertiesGetFiveRows")]
+        public async Task<ActionResult<List<PropertyDTO>>> SearchPropertiesGetFiveRows([FromBody] PropertySearchDTO searchDto, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var results = await _prop.SearchPropertiesGetFiveRows(searchDto, cancellationToken);
                 return Ok(results);
             }
             catch (Exception ex)

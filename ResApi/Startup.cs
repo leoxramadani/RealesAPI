@@ -131,7 +131,7 @@ namespace RealesApi
                 };
 
                 // Try without Authority and MetadataAddress first
-                // options.Authority = domain;
+                 options.Authority = "https://realest.kinde.com";
                 // options.MetadataAddress = $"{domain}/.well-known/openid-configuration";
 
                 options.RequireHttpsMetadata = false; // For development
@@ -141,9 +141,9 @@ namespace RealesApi
                 {
                     ValidateIssuerSigningKey = false, // Start with this off for testing
                     ValidateIssuer = true,
-                    ValidIssuer = domain,
+                    ValidIssuer = "https://realest.kinde.com",
                     ValidateAudience = true,
-                    ValidAudience = audience,
+                    ValidAudience = "8a0a26a46ccb476d8b32b8439a23bb50",
                     ValidateLifetime = true,
                     NameClaimType = "name",
                     RoleClaimType = "role",
