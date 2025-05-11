@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "gOTuy7yhrmJgRw8OvSjBjh2DDwIybDZPy1YvHjCjGJCDFQVnRWwi/k9J30qgtyIMHb9rK6g46lUWmJj820awAw==",
-  "success": false,
+  "dgSpecHash": "5yFnh7OPeeg=",
+  "success": true,
   "projectFilePath": "/Users/leoramadani/Documents/reealestApi/ResApi/RealesApi.csproj",
   "expectedPackageFiles": [
     "/Users/leoramadani/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
@@ -66,12 +66,12 @@
     "/Users/leoramadani/.nuget/packages/microsoft.extensions.options/8.0.2/microsoft.extensions.options.8.0.2.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.identity.client/4.14.0/microsoft.identity.client.4.14.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/microsoft.identitymodel.abstractions/6.31.0/microsoft.identitymodel.abstractions.6.31.0.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/microsoft.identitymodel.abstractions/8.0.1/microsoft.identitymodel.abstractions.8.0.1.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.0.1/microsoft.identitymodel.jsonwebtokens.8.0.1.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/microsoft.identitymodel.logging/6.31.0/microsoft.identitymodel.logging.6.31.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/microsoft.identitymodel.protocols/6.31.0/microsoft.identitymodel.protocols.6.31.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/6.31.0/microsoft.identitymodel.protocols.openidconnect.6.31.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/microsoft.identitymodel.tokens/6.31.0/microsoft.identitymodel.tokens.6.31.0.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/microsoft.identitymodel.logging/8.0.1/microsoft.identitymodel.logging.8.0.1.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/microsoft.identitymodel.protocols/8.0.1/microsoft.identitymodel.protocols.8.0.1.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/8.0.1/microsoft.identitymodel.protocols.openidconnect.8.0.1.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/microsoft.identitymodel.tokens/8.0.1/microsoft.identitymodel.tokens.8.0.1.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.net.http.headers/2.2.0/microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.netcore.platforms/3.1.0/microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.netcore.targets/1.1.3/microsoft.netcore.targets.1.1.3.nupkg.sha512",
@@ -137,7 +137,6 @@
     "/Users/leoramadani/.nuget/packages/system.runtime.serialization.json/4.3.0/system.runtime.serialization.json.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.runtime.serialization.primitives/4.3.0/system.runtime.serialization.primitives.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.security.accesscontrol/4.7.0/system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/system.security.cryptography.cng/4.5.0/system.security.cryptography.cng.4.5.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.security.cryptography.primitives/4.3.0/system.security.cryptography.primitives.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.security.cryptography.protecteddata/4.7.0/system.security.cryptography.protecteddata.4.7.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.security.permissions/4.7.0/system.security.permissions.4.7.0.nupkg.sha512",
@@ -160,27 +159,21 @@
   ],
   "logs": [
     {
-      "code": "Undefined",
+      "code": "NU1902",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Problem reading the cache file /Users/leoramadani/Documents/reealestApi/ResApi/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "RealesApi depends on Microsoft.IdentityModel.Protocols.OpenIdConnect (>= 6.30.2) but Microsoft.IdentityModel.Protocols.OpenIdConnect 6.30.2 was not found. An approximate best match of Microsoft.IdentityModel.Protocols.OpenIdConnect 6.31.0 was resolved.",
-      "libraryId": "Microsoft.IdentityModel.Protocols.OpenIdConnect",
+      "message": "Package 'IdentityServer4' 4.1.2 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-55p7-v223-x366",
+      "libraryId": "IdentityServer4",
       "targetGraphs": [
         "net8.0"
       ]
     },
     {
-      "code": "NU1603",
+      "code": "NU1902",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "RealesApi depends on Microsoft.IdentityModel.Tokens (>= 6.30.2) but Microsoft.IdentityModel.Tokens 6.30.2 was not found. An approximate best match of Microsoft.IdentityModel.Tokens 6.31.0 was resolved.",
-      "libraryId": "Microsoft.IdentityModel.Tokens",
+      "message": "Package 'IdentityServer4' 4.1.2 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-ff4q-64jc-gx98",
+      "libraryId": "IdentityServer4",
       "targetGraphs": [
         "net8.0"
       ]
@@ -191,15 +184,6 @@
       "warningLevel": 1,
       "message": "Package 'Microsoft.AspNet.WebApi.Core 5.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.WebApi.Core",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    },
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Detected package downgrade: Microsoft.IdentityModel.Tokens from 8.0.1 to 6.31.0. Reference the package directly from the project to select a different version. \n RealesApi -> System.IdentityModel.Tokens.Jwt 8.0.1 -> Microsoft.IdentityModel.Tokens (>= 8.0.1) \n RealesApi -> Microsoft.IdentityModel.Tokens (>= 6.30.2)",
-      "libraryId": "Microsoft.IdentityModel.Tokens",
       "targetGraphs": [
         "net8.0"
       ]

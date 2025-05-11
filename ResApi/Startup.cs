@@ -139,7 +139,7 @@ namespace RealesApi
 
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuerSigningKey = false, // Start with this off for testing
+                    ValidateIssuerSigningKey = true, // ENABLE THIS
                     ValidateIssuer = true,
                     ValidIssuer = "https://realest.kinde.com",
                     ValidateAudience = true,
@@ -147,8 +147,6 @@ namespace RealesApi
                     ValidateLifetime = true,
                     NameClaimType = "name",
                     RoleClaimType = "role",
-                    // Skip signature validation temporarily for testing
-                    SignatureValidator = (token, parameters) => new JwtSecurityToken(token)
                 };
 
                 options.Events = new JwtBearerEvents
