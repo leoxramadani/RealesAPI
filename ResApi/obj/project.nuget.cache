@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NQ1/M6Z6AfE=",
+  "dgSpecHash": "gOTuy7yhrmJgRw8OvSjBjh2DDwIybDZPy1YvHjCjGJCDFQVnRWwi/k9J30qgtyIMHb9rK6g46lUWmJj820awAw==",
   "success": false,
   "projectFilePath": "/Users/leoramadani/Documents/reealestApi/ResApi/RealesApi.csproj",
   "expectedPackageFiles": [
@@ -39,7 +39,6 @@
     "/Users/leoramadani/.nuget/packages/microsoft.aspnetcore.signalr.protocols.json/8.0.7/microsoft.aspnetcore.signalr.protocols.json.8.0.7.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.aspnetcore.websockets/2.2.0/microsoft.aspnetcore.websockets.2.2.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.aspnetcore.webutilities/2.2.0/microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/microsoft.bcl.asyncinterfaces/8.0.0/microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.data.sqlclient/2.0.1/microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/microsoft.data.sqlclient.sni.runtime/2.0.1/microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",
@@ -130,7 +129,7 @@
     "/Users/leoramadani/.nuget/packages/system.resources.resourcemanager/4.3.0/system.resources.resourcemanager.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.runtime/4.3.0/system.runtime.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.runtime.caching/4.7.0/system.runtime.caching.4.7.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/system.runtime.compilerservices.unsafe/4.6.0/system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.runtime.extensions/4.3.0/system.runtime.extensions.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.runtime.handles/4.3.0/system.runtime.handles.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.runtime.interopservices/4.3.0/system.runtime.interopservices.4.3.0.nupkg.sha512",
@@ -147,8 +146,7 @@
     "/Users/leoramadani/.nuget/packages/system.text.encoding/4.3.0/system.text.encoding.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.text.encoding.codepages/4.7.0/system.text.encoding.codepages.4.7.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.text.encoding.extensions/4.3.0/system.text.encoding.extensions.4.3.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/system.text.encodings.web/8.0.0/system.text.encodings.web.8.0.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/system.text.json/8.0.4/system.text.json.8.0.4.nupkg.sha512",
+    "/Users/leoramadani/.nuget/packages/system.text.encodings.web/4.7.0/system.text.encodings.web.4.7.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.text.regularexpressions/4.3.0/system.text.regularexpressions.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.threading/4.3.0/system.threading.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.threading.channels/4.5.0/system.threading.channels.4.5.0.nupkg.sha512",
@@ -158,12 +156,15 @@
     "/Users/leoramadani/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
     "/Users/leoramadani/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.36/microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.36/microsoft.netcore.app.host.osx-arm64.6.0.36.nupkg.sha512",
-    "/Users/leoramadani/.nuget/packages/microsoft.netcore.app.ref/6.0.36/microsoft.netcore.app.ref.6.0.36.nupkg.sha512"
+    "/Users/leoramadani/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /Users/leoramadani/Documents/reealestApi/ResApi/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1603",
       "level": "Warning",
@@ -171,7 +172,7 @@
       "message": "RealesApi depends on Microsoft.IdentityModel.Protocols.OpenIdConnect (>= 6.30.2) but Microsoft.IdentityModel.Protocols.OpenIdConnect 6.30.2 was not found. An approximate best match of Microsoft.IdentityModel.Protocols.OpenIdConnect 6.31.0 was resolved.",
       "libraryId": "Microsoft.IdentityModel.Protocols.OpenIdConnect",
       "targetGraphs": [
-        "net6.0"
+        "net8.0"
       ]
     },
     {
@@ -181,46 +182,26 @@
       "message": "RealesApi depends on Microsoft.IdentityModel.Tokens (>= 6.30.2) but Microsoft.IdentityModel.Tokens 6.30.2 was not found. An approximate best match of Microsoft.IdentityModel.Tokens 6.31.0 was resolved.",
       "libraryId": "Microsoft.IdentityModel.Tokens",
       "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'IdentityServer4' 4.1.2 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-55p7-v223-x366",
-      "libraryId": "IdentityServer4",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1902",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'IdentityServer4' 4.1.2 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-ff4q-64jc-gx98",
-      "libraryId": "IdentityServer4",
-      "targetGraphs": [
-        "net6.0"
+        "net8.0"
       ]
     },
     {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.WebApi.Core",
       "targetGraphs": [
-        "net6.0"
+        "net8.0"
       ]
     },
     {
       "code": "NU1605",
       "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: Microsoft.IdentityModel.Tokens from 8.0.1 to 6.31.0. Reference the package directly from the project to select a different version. \n RealesApi -> System.IdentityModel.Tokens.Jwt 8.0.1 -> Microsoft.IdentityModel.Tokens (>= 8.0.1) \n RealesApi -> Microsoft.IdentityModel.Tokens (>= 6.30.2)",
+      "message": "Detected package downgrade: Microsoft.IdentityModel.Tokens from 8.0.1 to 6.31.0. Reference the package directly from the project to select a different version. \n RealesApi -> System.IdentityModel.Tokens.Jwt 8.0.1 -> Microsoft.IdentityModel.Tokens (>= 8.0.1) \n RealesApi -> Microsoft.IdentityModel.Tokens (>= 6.30.2)",
       "libraryId": "Microsoft.IdentityModel.Tokens",
       "targetGraphs": [
-        "net6.0"
+        "net8.0"
       ]
     }
   ]

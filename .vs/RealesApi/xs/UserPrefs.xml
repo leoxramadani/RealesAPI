@@ -1,36 +1,36 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="{CF3C8B4C-7B71-4D41-B0E7-62F7D323FCEF}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.RealesApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ResApi/appsettings.json">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../usr/local/share/dotnet/sdk/7.0.317/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets">
     <Files>
       <File FileName="ResApi/Controllers/UserController.cs" />
       <File FileName="ResApi/Startup.cs" />
-      <File FileName="ResApi/appsettings.json" Line="21" Column="5" />
-      <File FileName="ResApi/Controllers/PurposeController.cs" />
+      <File FileName="ResApi/appsettings.json" />
       <File FileName="ResApi/Controllers/AuthController.cs" />
-      <File FileName="ResApi/Controllers/PropertyController.cs" Line="34" Column="18" />
+      <File FileName="ResApi/Controllers/PropertyController.cs" />
+      <File FileName="ResApi/DTA/Services/PropertyService.cs" />
+      <File FileName="ResApi/DTA/Intefaces/IProperty.cs" />
+      <File FileName="ResApi/Program.cs" />
+      <File FileName="ResApi/RealesApi.csproj" />
+      <File FileName="../../../../usr/local/share/dotnet/sdk/7.0.317/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.TargetFrameworkInference.targets" Line="8" Column="1" />
+      <File FileName="ResApi/mykey" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="RealesApi" expanded="True">
-            <Node name="RealesApi">
-              <Node name="DTA" expanded="True">
-                <Node name="Services" expanded="True" />
-              </Node>
-              <Node name="appsettings.json" selected="True" />
-            </Node>
-          </Node>
+          <Node name="RealesApi" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.RealesApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/leoramadani/Documents/reealestApi/ResApi/DTA/Services/UserService.cs" relfile="ResApi/DTA/Services/UserService.cs" line="24" column="1" />
       <Breakpoint file="/Users/leoramadani/Documents/reealestApi/ResApi/Controllers/UserController.cs" relfile="ResApi/Controllers/UserController.cs" line="28" column="1" />
       <Breakpoint file="/Users/leoramadani/Documents/reealestApi/ResApi/Controllers/AuthController.cs" relfile="ResApi/Controllers/AuthController.cs" line="66" column="1" />
+      <Breakpoint file="/Users/leoramadani/Documents/reealestApi/ResApi/DTA/Services/PropertyService.cs" relfile="ResApi/DTA/Services/PropertyService.cs" line="484" column="1" />
+      <Breakpoint file="/Users/leoramadani/Documents/reealestApi/ResApi/Controllers/PropertyController.cs" relfile="ResApi/Controllers/PropertyController.cs" line="38" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
