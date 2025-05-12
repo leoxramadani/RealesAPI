@@ -3,6 +3,7 @@ using RealesApi.DTO.ConditionsDTO;
 using RealesApi.DTO.Property;
 using RealesApi.DTO.PropertyTypeDTO;
 using RealesApi.DTO.PurposeDTO;
+using RealesApi.DTO.UserDTO;
 using RealesApi.DTO.WhatsSpecialDTO;
 using RealesApi.Models;
 
@@ -48,6 +49,7 @@ namespace RealesApi.Extentions
 
             CreateMap<PropertyDTO, Property>().ReverseMap();
 
+            CreateMap<UserDTO, User>().ReverseMap();
         }
     }
 }

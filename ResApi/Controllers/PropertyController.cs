@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -18,12 +20,14 @@ namespace RealesApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PropertyController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IProperty _prop;
         private readonly ILogger<Property> _logger;
         private readonly IHashService _hash;
+
         public PropertyController(IUnitOfWork unitOfWork, IProperty prop, ILogger<Property> logger, IHashService hash)
         {
             _unitOfWork = unitOfWork;
@@ -33,7 +37,6 @@ namespace RealesApi.Controllers
         }
         [HttpGet]
         [Route("GetAllProperties")]
-        [Authorize]
         public async Task<ActionResult<PropertyDTO>> GetAllProperties(CancellationToken cancellationToken)
         {
             try
@@ -358,6 +361,22 @@ namespace RealesApi.Controllers
         {
             try
             {
+                var claims = User.Claims.Select(c => new { c.Type, c.Value }).ToList();
+                var user = new
+                {
+                    Id = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                        ?? User.FindFirstValue("sub")
+                        ?? User.FindFirstValue("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"),
+                    Email = User.FindFirstValue(ClaimTypes.Email)
+                        ?? User.FindFirstValue("email"),
+                    GivenName = User.FindFirstValue(ClaimTypes.GivenName)
+                        ?? User.FindFirstValue("given_name"),
+                    FamilyName = User.FindFirstValue(ClaimTypes.Surname)
+                        ?? User.FindFirstValue("family_name"),
+                    Name = User.FindFirstValue(ClaimTypes.Name)
+                        ?? User.FindFirstValue("name")
+                };
+
                 var results = await _prop.SearchProperties(searchDto, cancellationToken);
                 return Ok(results);
             }

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RealesApi.DataResponse;
 using RealesApi.DTA.Intefaces;
 using RealesApi.DTO.ConditionsDTO;
-using RealesApi.DTO.PropertyTypeDTO;
 using RealesApi.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,6 +15,7 @@ namespace RealesApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ConditionsController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
