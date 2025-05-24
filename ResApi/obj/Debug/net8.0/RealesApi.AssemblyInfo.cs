@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RealesApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9d40232278a8705466eb79948c2ca0ca87a59f3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32aad87348e96ee08ed21e8035b040afab55bb8a")]
 [assembly: System.Reflection.AssemblyProductAttribute("RealesApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RealesApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

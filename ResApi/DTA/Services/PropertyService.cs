@@ -57,7 +57,7 @@ namespace RealesApi.DTA.Services
             return null;
 
         }
-        //Get three latest properties
+        //Get two latest properties
         public async Task<List<PropertyDTO>> GetLatestTwoProperties(CancellationToken cancellationToken)
         {
             try
@@ -73,6 +73,34 @@ namespace RealesApi.DTA.Services
                                            .OrderByDescending(x => x.DatePosted)
                                            .Select(x => _mapper.Map<PropertyDTO>(x))
                                            .Take(2)
+                                           .ToListAsync(cancellationToken);
+
+
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+
+        }
+        //Get five latest properties
+        public async Task<List<PropertyDTO>> GetLatestFiveProperties(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var entity = await _context.Properties
+                                           .Include(x => x.PropertyOtherImages)
+                                           .Include(x => x.Condition)
+                                           .Include(x => x.Users)
+                                           .Include(x => x.PropertyWhatsSpecialLinks)
+                                           .Include(x => x.PropertyType)
+                                           .Include(x => x.Purpose)
+                                           .Where(x => x.Deleted != true)
+                                           .OrderByDescending(x => x.DatePosted)
+                                           .Select(x => _mapper.Map<PropertyDTO>(x))
+                                           .Take(5)
                                            .ToListAsync(cancellationToken);
 
 
@@ -607,6 +635,8 @@ namespace RealesApi.DTA.Services
                 if (search.MaxSize.HasValue)
                     query = query.Where(p => p.Size <= search.MaxSize.Value);
 
+
+
                 if (!string.IsNullOrEmpty(search.PropertyTypeName))
                     query = query.Where(p => p.PropertyType.Name.Contains(search.PropertyTypeName));
 
@@ -646,6 +676,9 @@ namespace RealesApi.DTA.Services
 
                 if (!string.IsNullOrEmpty(search.Location))
                     query = query.Where(p => p.Location.Contains(search.Location));
+
+                if (!string.IsNullOrEmpty(search.Purpose))
+                    query = query.Where(p => p.Purpose.Name == search.Purpose.ToString());
 
                 if (search.MinSize.HasValue)
                     query = query.Where(p => p.Size >= search.MinSize.Value);

@@ -12,6 +12,7 @@ namespace RealesApi.DTO.Property
             public decimal? MinPrice { get; set; }
             public decimal? MaxPrice { get; set; }
             public int? RentFrame { get; set; }
+            public string? Purpose { get; set; }
     }
 }
 

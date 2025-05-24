@@ -79,6 +79,27 @@ namespace RealesApi.Controllers
             }
         }
         [HttpGet]
+        [Route("GetLatestFiveProperties")]
+        public async Task<ActionResult<PropertyDTO>> GetLatestFiveProperties(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var response = await _prop.GetLatestFiveProperties(cancellationToken);
+                await _unitOfWork.Save(cancellationToken);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var errRet = new DataResponse<bool>
+                {
+                    Succeeded = false,
+                    ErrorMessage = ex.Message
+                };
+                return BadRequest(errRet);
+            }
+        }
+
+        [HttpGet]
         [Route("GetPropertyById")]
         public async Task<ActionResult<PropertyDTO>> GetPropertyById(Guid propId, CancellationToken cancellationToken)
         {
@@ -357,6 +378,7 @@ namespace RealesApi.Controllers
         }
         [HttpPost]
         [Route("SearchProperties")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<PropertyDTO>>> SearchProperties([FromBody] PropertySearchDTO searchDto, CancellationToken cancellationToken)
         {
             try
@@ -392,6 +414,7 @@ namespace RealesApi.Controllers
         }
         [HttpPost]
         [Route("SearchPropertiesGetFiveRows")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<PropertyDTO>>> SearchPropertiesGetFiveRows([FromBody] PropertySearchDTO searchDto, CancellationToken cancellationToken)
         {
             try

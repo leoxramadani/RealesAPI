@@ -28,6 +28,7 @@ namespace RealesApi.DTA.Intefaces
         Task<List<PropertyDTO>> GetPropertyByUserIdRejected(Guid sellerId);
         Task<List<PropertyDTO>> SearchProperties(PropertySearchDTO search, CancellationToken cancellationToken);
         Task<List<PropertyDTO>> SearchPropertiesGetFiveRows(PropertySearchDTO search, CancellationToken cancellationToken);
+        Task<List<PropertyDTO>> GetLatestFiveProperties(CancellationToken cancellationToken);
     }
 }
 
